@@ -1,1 +1,3 @@
+co\panaderia\access\ProductoRepository.class
 co\panaderia\presentation\Main.class
+co\panaderia\domain\services\ProductoService.class

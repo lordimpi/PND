@@ -40,7 +40,7 @@ public class Factory {
         IPersonaRepository result = null;
 
         try {
-            result = (IPersonaRepository) Class.forName(Utilities.loadProperty("repositoryClass")).getConstructor().newInstance();
+            result = (IPersonaRepository) Class.forName(Utilities.loadProperty("PersonaRepositoryClass")).getConstructor().newInstance();
         } catch (ClassNotFoundException | NoSuchMethodException | SecurityException
                 | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             Logger.getLogger(Factory.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,4 +50,20 @@ public class Factory {
         }
         return result;
     }
+
+    public IProductoRepository getProductoRepository() {
+        IProductoRepository result = null;
+
+        try {
+            result = (IProductoRepository) Class.forName(Utilities.loadProperty("ProductoRepositoryClass")).getConstructor().newInstance();
+        } catch (ClassNotFoundException | NoSuchMethodException | SecurityException
+                | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            Logger.getLogger(Factory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (result == null) {
+            result = new ProductoRepository();
+        }
+        return result;
+    }
+
 }

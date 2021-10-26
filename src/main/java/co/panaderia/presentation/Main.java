@@ -6,7 +6,9 @@
 package co.panaderia.presentation;
 
 import co.panaderia.domain.entitys.Persona;
+import co.panaderia.domain.entitys.Producto;
 import co.panaderia.domain.services.PersonaService;
+import co.panaderia.domain.services.ProductoService;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -28,6 +30,16 @@ public class Main {
         listaPersonas.forEach(element -> {
             System.out.println(element.toString());
         });
+
+        System.out.println("*********Lista de Productos*************");
+        ProductoService prc = new ProductoService();
+        List<Producto> listaProductos;
+        listaProductos = prc.list();
+
+        listaProductos.forEach(element -> {
+            System.out.println(element.toString());
+        });
+
     }
 
 }
