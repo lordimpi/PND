@@ -51,6 +51,12 @@ public class Factory {
         return result;
     }
 
+    /**
+     * Método que crea una instancia concreta de la jerarquia
+     * IProductoRepository
+     *
+     * @return una clase hija de la abstracción IProductoRepository
+     */
     public IProductoRepository getProductoRepository() {
         IProductoRepository result = null;
 

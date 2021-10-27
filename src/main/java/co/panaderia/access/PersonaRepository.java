@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.panaderia.access;
 
 import co.panaderia.domain.entitys.Persona;
@@ -18,36 +13,38 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Es una implementación que tiene libertad de hacer una implementación del
+ * contrato. Lo puede hacer con Sqlite, postgres, mysql, u otra tecnología
  *
  * @author Santiago Acuña
  */
 public class PersonaRepository implements IPersonaRepository {
-    
+
     private Connection conn;
-    
+
     @Override
     public boolean create(Persona newPersona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public boolean update(Persona newPersona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public Persona find(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public List<Persona> list() {
         List<Persona> personas = new ArrayList<>();
         try {
-            
+
             String sql = "{CALL ListarPersonas}";
             this.connect();
-            
+
             CallableStatement stmt = conn.prepareCall(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -58,11 +55,11 @@ public class PersonaRepository implements IPersonaRepository {
                 newPersona.setApellido(rs.getString("per_apellidos"));
                 newPersona.setCorreo(rs.getString("per_correo"));
                 newPersona.setTelefono(rs.getString("per_telefono"));
-                
+
                 personas.add(newPersona);
             }
             this.disconnect();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(PersonaRepository.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,6 +68,8 @@ public class PersonaRepository implements IPersonaRepository {
 
     /**
      * Conectar a la bd
+     *
+     * @return 1 si fue posible conectar, -1 de lo contrario
      */
     public int connect() {
         try {

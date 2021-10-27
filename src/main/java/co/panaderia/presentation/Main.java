@@ -10,7 +10,6 @@ import co.panaderia.domain.entitys.Producto;
 import co.panaderia.domain.services.PersonaService;
 import co.panaderia.domain.services.ProductoService;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  *
@@ -40,6 +39,14 @@ public class Main {
             System.out.println(element.toString());
         });
 
+        System.out.println("PRODUCTO: " + prc.buscar(2).toString());
+        Producto productoModificado = new Producto();
+        productoModificado.setId(4);
+        productoModificado.setNombre("Pandebono");
+        productoModificado.setDescripcion("Echos con almidon de yuca");
+        productoModificado.setPrecioVenta(500);
+        System.out.println("PRODUCTO ACTUALIZAR = " + prc.actualizar(productoModificado));
+        
+        System.out.println("PRODUCTO ELIMINADO = "+ prc.eliminar(8));
     }
-
 }

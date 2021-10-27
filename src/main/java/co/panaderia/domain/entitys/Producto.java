@@ -1,7 +1,7 @@
 package co.panaderia.domain.entitys;
 
 /**
- *
+ *Clase Producto
  * @author Santiago Acuña
  */
 public class Producto {
