@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: co.panaderia.domain.services.ProductoServiceTest
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.044 s <<< FAILURE! - in co.panaderia.domain.services.ProductoServiceTest
-testEliminar  Time elapsed: 0.105 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
-	at co.panaderia.domain.services.ProductoServiceTest.testEliminar(ProductoServiceTest.java:88)
-

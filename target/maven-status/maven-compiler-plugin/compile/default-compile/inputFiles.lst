@@ -1,11 +1,14 @@
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\services\PersonaService.java
-C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\Main.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\PersonaRepository.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\IProductoRepository.java
-C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\services\ProductoService.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\entitys\Persona.java
-C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\Factory.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\IPersonaRepository.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\ProductoRepository.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\entitys\Producto.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\GUILogin.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\Main.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\GUIMenuAdmin.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\services\ProductoService.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\Factory.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\infra\Utilities.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\infra\Messages.java
