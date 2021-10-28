@@ -1,5 +1,6 @@
-package co.panaderia.presentation;
+package co.panaderia.presentation.admin;
 
+import co.panaderia.presentation.GUILogin;
 import static co.panaderia.infra.Messages.successMessage;
 import java.awt.Color;
 import java.awt.Image;
@@ -34,12 +35,17 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
      * Guarda la coordenada en eje y para poder mover el formulario con el raton
      */
     private int y = 0;
+    /**
+     * Guarda la instancia del formulario Productos
+     */
+    private GUIProductos ventaProductos;
 
     /**
      * Constructor que inicializa el formulario Menu admin
      *
      */
-    public GUIMenuAdmin() {
+    public GUIMenuAdmin() throws PropertyVetoException {
+        this.ventaProductos = new GUIProductos();
         initComponents();
         cargarLista();
         setLocationRelativeTo(null);
@@ -66,12 +72,12 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         BtnProductos = new javax.swing.JPanel();
         jLbProductosIcon = new javax.swing.JLabel();
         jLbProductos = new javax.swing.JLabel();
-        BtnFoodDishes = new javax.swing.JPanel();
-        jLbFoodDishesIcon = new javax.swing.JLabel();
-        jLbFoodDishes = new javax.swing.JLabel();
-        BtnAccounting = new javax.swing.JPanel();
-        jLbAccountingIcon = new javax.swing.JLabel();
-        jLbAccounting = new javax.swing.JLabel();
+        BtnInsumos = new javax.swing.JPanel();
+        jLbInsumosIcon = new javax.swing.JLabel();
+        jLbInsumos = new javax.swing.JLabel();
+        BtnContabilidad = new javax.swing.JPanel();
+        jLbContabilidadIcon = new javax.swing.JLabel();
+        jLbContabilidad = new javax.swing.JLabel();
         BtnUsuarios = new javax.swing.JPanel();
         jLbUsuariosIcon = new javax.swing.JLabel();
         jLbUsuarios = new javax.swing.JLabel();
@@ -209,79 +215,79 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
 
         jPnlSide.add(BtnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, -1, 40));
 
-        BtnFoodDishes.setBackground(new java.awt.Color(64, 43, 100));
-        BtnFoodDishes.addMouseListener(new java.awt.event.MouseAdapter() {
+        BtnInsumos.setBackground(new java.awt.Color(64, 43, 100));
+        BtnInsumos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtnFoodDishesMousePressed(evt);
+                BtnInsumosMousePressed(evt);
             }
         });
 
-        jLbFoodDishesIcon.setPreferredSize(new java.awt.Dimension(34, 35));
+        jLbInsumosIcon.setPreferredSize(new java.awt.Dimension(34, 35));
 
-        jLbFoodDishes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLbFoodDishes.setForeground(new java.awt.Color(204, 204, 204));
-        jLbFoodDishes.setText("Food dishes");
+        jLbInsumos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLbInsumos.setForeground(new java.awt.Color(204, 204, 204));
+        jLbInsumos.setText("Insumos");
 
-        javax.swing.GroupLayout BtnFoodDishesLayout = new javax.swing.GroupLayout(BtnFoodDishes);
-        BtnFoodDishes.setLayout(BtnFoodDishesLayout);
-        BtnFoodDishesLayout.setHorizontalGroup(
-            BtnFoodDishesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnFoodDishesLayout.createSequentialGroup()
+        javax.swing.GroupLayout BtnInsumosLayout = new javax.swing.GroupLayout(BtnInsumos);
+        BtnInsumos.setLayout(BtnInsumosLayout);
+        BtnInsumosLayout.setHorizontalGroup(
+            BtnInsumosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnInsumosLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLbFoodDishesIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLbInsumosIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLbFoodDishes, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLbInsumos, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-        BtnFoodDishesLayout.setVerticalGroup(
-            BtnFoodDishesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnFoodDishesLayout.createSequentialGroup()
-                .addGroup(BtnFoodDishesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLbFoodDishesIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(BtnFoodDishesLayout.createSequentialGroup()
+        BtnInsumosLayout.setVerticalGroup(
+            BtnInsumosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnInsumosLayout.createSequentialGroup()
+                .addGroup(BtnInsumosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLbInsumosIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BtnInsumosLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLbFoodDishes)))
+                        .addComponent(jLbInsumos)))
                 .addGap(21, 21, 21))
         );
 
-        jPnlSide.add(BtnFoodDishes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, -1, 40));
+        jPnlSide.add(BtnInsumos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, -1, 40));
 
-        BtnAccounting.setBackground(new java.awt.Color(64, 43, 100));
-        BtnAccounting.addMouseListener(new java.awt.event.MouseAdapter() {
+        BtnContabilidad.setBackground(new java.awt.Color(64, 43, 100));
+        BtnContabilidad.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtnAccountingMousePressed(evt);
+                BtnContabilidadMousePressed(evt);
             }
         });
 
-        jLbAccountingIcon.setPreferredSize(new java.awt.Dimension(34, 35));
+        jLbContabilidadIcon.setPreferredSize(new java.awt.Dimension(34, 35));
 
-        jLbAccounting.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLbAccounting.setForeground(new java.awt.Color(204, 204, 204));
-        jLbAccounting.setText("Accounting");
+        jLbContabilidad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLbContabilidad.setForeground(new java.awt.Color(204, 204, 204));
+        jLbContabilidad.setText("Contabilidad");
 
-        javax.swing.GroupLayout BtnAccountingLayout = new javax.swing.GroupLayout(BtnAccounting);
-        BtnAccounting.setLayout(BtnAccountingLayout);
-        BtnAccountingLayout.setHorizontalGroup(
-            BtnAccountingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnAccountingLayout.createSequentialGroup()
+        javax.swing.GroupLayout BtnContabilidadLayout = new javax.swing.GroupLayout(BtnContabilidad);
+        BtnContabilidad.setLayout(BtnContabilidadLayout);
+        BtnContabilidadLayout.setHorizontalGroup(
+            BtnContabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnContabilidadLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLbAccountingIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLbContabilidadIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLbAccounting, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLbContabilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-        BtnAccountingLayout.setVerticalGroup(
-            BtnAccountingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnAccountingLayout.createSequentialGroup()
-                .addGroup(BtnAccountingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLbAccountingIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(BtnAccountingLayout.createSequentialGroup()
+        BtnContabilidadLayout.setVerticalGroup(
+            BtnContabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnContabilidadLayout.createSequentialGroup()
+                .addGroup(BtnContabilidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLbContabilidadIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BtnContabilidadLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLbAccounting)))
+                        .addComponent(jLbContabilidad)))
                 .addGap(21, 21, 21))
         );
 
-        jPnlSide.add(BtnAccounting, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, -1, 40));
+        jPnlSide.add(BtnContabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, -1, 40));
 
         BtnUsuarios.setBackground(new java.awt.Color(64, 43, 100));
         BtnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -489,10 +495,10 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
 
         if (state) {
             this.setExtendedState(NORMAL);
-            state = false;
+            state = !state;
         } else {
             this.setExtendedState(MAXIMIZED_BOTH);
-            state = true;
+            state = !state;
         }
     }//GEN-LAST:event_jLbMaxMinMouseClicked
 
@@ -536,10 +542,10 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         setColor(BtnHomePage);
         resetColor(BtnProductos);
         resetColor(BtnMenus);
-        resetColor(BtnFoodDishes);
+        resetColor(BtnInsumos);
         resetColor(BtnClientes);
         resetColor(BtnUsuarios);
-        resetColor(BtnAccounting);
+        resetColor(BtnContabilidad);
 
     }//GEN-LAST:event_BtnHomePageMousePressed
 
@@ -552,10 +558,17 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         resetColor(BtnHomePage);
         setColor(BtnProductos);
         resetColor(BtnMenus);
-        resetColor(BtnFoodDishes);
+        resetColor(BtnInsumos);
         resetColor(BtnClientes);
         resetColor(BtnUsuarios);
-        resetColor(BtnAccounting);
+        resetColor(BtnContabilidad);
+
+        if (!ventaProductos.isVisible()) {
+            ventaProductos.setMaximizable(true);
+            dskEscritorio.add(ventaProductos);
+            ventaProductos.show();
+        }
+
     }//GEN-LAST:event_BtnProductosMousePressed
 
     /**
@@ -567,10 +580,10 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
         setColor(BtnMenus);
-        resetColor(BtnFoodDishes);
+        resetColor(BtnInsumos);
         resetColor(BtnClientes);
         resetColor(BtnUsuarios);
-        resetColor(BtnAccounting);
+        resetColor(BtnContabilidad);
     }//GEN-LAST:event_BtnMenusMousePressed
 
     /**
@@ -582,10 +595,10 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
         resetColor(BtnMenus);
-        resetColor(BtnFoodDishes);
+        resetColor(BtnInsumos);
         setColor(BtnClientes);
         resetColor(BtnUsuarios);
-        resetColor(BtnAccounting);
+        resetColor(BtnContabilidad);
 
     }//GEN-LAST:event_BtnClientesMousePressed
 
@@ -594,31 +607,31 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
      *
      * @param evt Evento del boton contabilidad
      */
-    private void BtnAccountingMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAccountingMousePressed
+    private void BtnContabilidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnContabilidadMousePressed
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
         resetColor(BtnMenus);
-        resetColor(BtnFoodDishes);
+        resetColor(BtnInsumos);
         resetColor(BtnClientes);
         resetColor(BtnUsuarios);
-        setColor(BtnAccounting);
+        setColor(BtnContabilidad);
 
-    }//GEN-LAST:event_BtnAccountingMousePressed
+    }//GEN-LAST:event_BtnContabilidadMousePressed
 
     /**
      * Boton que despliega las opciones para platos principales
      *
      * @param evt Evento del boton platos principales
      */
-    private void BtnFoodDishesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnFoodDishesMousePressed
+    private void BtnInsumosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnInsumosMousePressed
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
         resetColor(BtnMenus);
-        setColor(BtnFoodDishes);
+        setColor(BtnInsumos);
         resetColor(BtnClientes);
         resetColor(BtnUsuarios);
-        resetColor(BtnAccounting);
-    }//GEN-LAST:event_BtnFoodDishesMousePressed
+        resetColor(BtnContabilidad);
+    }//GEN-LAST:event_BtnInsumosMousePressed
 
     /**
      * Boton que despliega las opcciones de usuario
@@ -629,10 +642,10 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
         resetColor(BtnMenus);
-        resetColor(BtnFoodDishes);
+        resetColor(BtnInsumos);
         resetColor(BtnClientes);
         setColor(BtnUsuarios);
-        resetColor(BtnAccounting);
+        resetColor(BtnContabilidad);
 
     }//GEN-LAST:event_BtnUsuariosMousePressed
 
@@ -676,7 +689,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -696,30 +709,34 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUIMenuAdmin().setVisible(true);
+                try {
+                    new GUIMenuAdmin().setVisible(true);
+                } catch (PropertyVetoException ex) {
+                    Logger.getLogger(GUIMenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BtnAccounting;
     private javax.swing.JPanel BtnClientes;
-    private javax.swing.JPanel BtnFoodDishes;
+    private javax.swing.JPanel BtnContabilidad;
     private javax.swing.JPanel BtnHomePage;
+    private javax.swing.JPanel BtnInsumos;
     private javax.swing.JPanel BtnMenus;
     private javax.swing.JPanel BtnProductos;
     private javax.swing.JPanel BtnUsuarios;
     private javax.swing.JDesktopPane dskEscritorio;
-    private javax.swing.JLabel jLbAccounting;
-    private javax.swing.JLabel jLbAccountingIcon;
     private javax.swing.JLabel jLbClientes;
     private javax.swing.JLabel jLbClientesIcon;
     private javax.swing.JLabel jLbClose1;
-    private javax.swing.JLabel jLbFoodDishes;
-    private javax.swing.JLabel jLbFoodDishesIcon;
+    private javax.swing.JLabel jLbContabilidad;
+    private javax.swing.JLabel jLbContabilidadIcon;
     private javax.swing.JLabel jLbHide;
     private javax.swing.JLabel jLbHomePage;
     private javax.swing.JLabel jLbHomePageIcono;
+    private javax.swing.JLabel jLbInsumos;
+    private javax.swing.JLabel jLbInsumosIcon;
     private javax.swing.JLabel jLbLogOut;
     private javax.swing.JLabel jLbMaxMin;
     private javax.swing.JLabel jLbMenus;
@@ -764,10 +781,10 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         addIcon(jLbHomePageIcono, "src/main/java/resources/home.png");
         addIcon(jLbProductosIcon, "src/main/java/resources/restaurant.png");
         addIcon(jLbMenusIcon, "src/main/java/resources/restaurantMenu.png");
-        addIcon(jLbFoodDishesIcon, "src/main/java/resources/foodDishes.png");
+        addIcon(jLbInsumosIcon, "src/main/java/resources/foodDishes.png");
         addIcon(jLbClientesIcon, "src/main/java/resources/customers.png");
         addIcon(jLbUsuariosIcon, "src/main/java/resources/users.png");
-        addIcon(jLbAccountingIcon, "src/main/java/resources/accounting.png");
+        addIcon(jLbContabilidadIcon, "src/main/java/resources/accounting.png");
         addIcon(jLbUserPhoto, "src/main/java/resources/userPhoto.png");
     }
 

@@ -1,10 +1,13 @@
 package co.panaderia.presentation;
 
+import co.panaderia.presentation.admin.GUIMenuAdmin;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import static co.panaderia.infra.Messages.warningMessage;
-
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,8 +24,6 @@ public class GUILogin extends javax.swing.JFrame {
         Image icon = Toolkit.getDefaultToolkit().getImage("./src/recursos/logo.png");
         this.setIconImage(icon);
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +46,7 @@ public class GUILogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio de Sesión");
+        setMinimumSize(new java.awt.Dimension(446, 146));
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         jLabel1.setForeground(java.awt.Color.blue);
@@ -103,14 +105,20 @@ public class GUILogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
+
         //Aqui vendria el analizar si el usuario existe en el sistema
         if (true) {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    GUIMenuAdmin ins = new GUIMenuAdmin();
-                    ins.setExtendedState(MAXIMIZED_BOTH);
-                    ins.setVisible(true);
+                    GUIMenuAdmin ins;
+                    try {
+                        ins = new GUIMenuAdmin();
+                        ins.setExtendedState(MAXIMIZED_BOTH);
+                        ins.setVisible(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(GUILogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                 }
             });
             this.dispose();
@@ -136,7 +144,7 @@ public class GUILogin extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

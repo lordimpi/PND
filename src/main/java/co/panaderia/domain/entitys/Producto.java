@@ -1,7 +1,8 @@
 package co.panaderia.domain.entitys;
 
 /**
- *Clase Producto
+ * Clase Producto
+ *
  * @author Santiago Acuña
  */
 public class Producto {
@@ -10,18 +11,20 @@ public class Producto {
     private String Nombre;
     private String Descripcion;
     private double PrecioVenta;
+    private String Imagen;
 
     //Constructores
     public Producto() {
+        this.Imagen = "";
     }
-    
+
     public Producto(int Id, String Nombre, String Descripcion, double PrecioVenta) {
         this.Id = Id;
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
         this.PrecioVenta = PrecioVenta;
     }
-    
+
     //Getter y Setter
     public int getId() {
         return Id;
@@ -55,11 +58,19 @@ public class Producto {
         this.PrecioVenta = PrecioVenta;
     }
 
-        @Override
+    public String getImagen() {
+        return Imagen;
+    }
+
+    public void setImagen(String Imagen) {
+        this.Imagen = Imagen;
+    }
+
+    @Override
     public String toString() {
-        return "Producto: [Id: " + this.Id 
-                + ", Nombre: " + this.Nombre + ", Descripcion: " 
+        return "Producto: [Id: " + this.Id
+                + ", Nombre: " + this.Nombre + ", Descripcion: "
                 + this.Descripcion + ", Precio Venta: " + this.PrecioVenta + "]";
     }
-    
+
 }
