@@ -2,6 +2,8 @@ co\panaderia\presentation\admin\GUIMenuAdmin$1.class
 co\panaderia\presentation\admin\GUIMenuAdmin$17.class
 co\panaderia\presentation\admin\GUIProductos$2.class
 co\panaderia\presentation\Main.class
+co\panaderia\access\IMediosPagosRepository.class
+co\panaderia\access\MediosPagosRepository.class
 co\panaderia\presentation\admin\GUIProductos$5.class
 co\panaderia\presentation\admin\GUIMenuAdmin$4.class
 co\panaderia\presentation\admin\GUIProductos$13.class
@@ -27,6 +29,7 @@ co\panaderia\infra\Utilities.class
 co\panaderia\presentation\admin\GUIProductos$7.class
 co\panaderia\infra\Messages.class
 co\panaderia\access\IPersonaRepository.class
+co\panaderia\domain\entitys\MediosPagos.class
 co\panaderia\presentation\admin\GUIMenuAdmin$12.class
 co\panaderia\presentation\GUILogin$1.class
 co\panaderia\presentation\admin\GUIMenuAdmin$6.class
@@ -37,6 +40,7 @@ co\panaderia\presentation\admin\GUIProductos$3.class
 co\panaderia\presentation\admin\GUIMenuAdmin$15.class
 co\panaderia\presentation\admin\GUIMenuAdmin$7.class
 co\panaderia\presentation\admin\GUIProductos$6.class
+co\panaderia\domain\services\MediosPagosService.class
 co\panaderia\presentation\admin\GUIMenuAdmin$14.class
 co\panaderia\presentation\admin\GUIProductos$9.class
 co\panaderia\presentation\admin\GUIProductos.class
@@ -45,7 +49,6 @@ co\panaderia\presentation\admin\GUIMenuAdmin.class
 co\panaderia\presentation\admin\GUIProductos$11.class
 co\panaderia\presentation\GUILogin$4.class
 co\panaderia\presentation\GUILogin.class
-co\panaderia\presentation\admin\GUIProductos$14.class
 co\panaderia\domain\entitys\Producto.class
 co\panaderia\domain\services\PersonaService.class
 co\panaderia\presentation\admin\GUIMenuAdmin$11.class

@@ -20,10 +20,10 @@ import javax.swing.table.TableModel;
 public class GUIProductos extends javax.swing.JInternalFrame {
 
     /**
-     * Almacena una lista de restaurantes
+     * Almacena una lista de productos
      */
     private List<Producto> productos;
-
+    
     private boolean EstadoListaProductos;
 
     /**
@@ -38,6 +38,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         mostrarTabla("Productos");
         mostrarTabla("Eliminar");
         jBtnModificar.setVisible(false);
+        jBtnCancelar.setVisible(false);
     }
 
     /**
@@ -48,7 +49,6 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPnlFondo = new javax.swing.JPanel();
         jTbPnProductos = new javax.swing.JTabbedPane();
@@ -69,14 +69,21 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jPnlFondoCrear = new javax.swing.JPanel();
         jPnNorte3 = new javax.swing.JPanel();
         jPnCentro3 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLbImagenCrear = new javax.swing.JLabel();
+        jBtnCargarImagenCrear = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLbNombre1 = new javax.swing.JLabel();
         jTxfNombreCrear = new javax.swing.JTextField();
         jLbDescripcion1 = new javax.swing.JLabel();
         jTxfDescripcionCrear = new javax.swing.JTextField();
         jLbPrecioVenta1 = new javax.swing.JLabel();
         jTxfPrecioVentaCrear = new javax.swing.JTextField();
-        jBtnCargarImagenCrear = new javax.swing.JButton();
-        jLbImagenCrear = new javax.swing.JLabel();
         jPnSur2 = new javax.swing.JPanel();
         jBtnCrear = new javax.swing.JButton();
         jBtnLimpiar = new javax.swing.JButton();
@@ -84,18 +91,26 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jPnlFondoModificar = new javax.swing.JPanel();
         jPnNorte2 = new javax.swing.JPanel();
         jLbIdProducto = new javax.swing.JLabel();
-        jTxfIdProducto = new javax.swing.JTextField();
+        jTxfIdProductoModificar = new javax.swing.JTextField();
         jBtnBuscar = new javax.swing.JButton();
         jBtnModificar = new javax.swing.JButton();
+        jBtnCancelar = new javax.swing.JButton();
         jPnCentro2 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLbNombre = new javax.swing.JLabel();
         jTxfNombreModificar = new javax.swing.JTextField();
         jLbDescripcion = new javax.swing.JLabel();
         jTxfDescripcionModificar = new javax.swing.JTextField();
         jLbPrecioVenta = new javax.swing.JLabel();
         jTxfPrecioVentaMoficar = new javax.swing.JTextField();
-        jBtnCargarImagenModificar = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
         jLbImagenModificar = new javax.swing.JLabel();
+        jBtnCargarImagenModificar = new javax.swing.JButton();
         jPnSur1 = new javax.swing.JPanel();
         jPnlEliminarProducto = new javax.swing.JPanel();
         jPnCentro1 = new javax.swing.JPanel();
@@ -177,7 +192,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +269,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jPnNorte.setLayout(jPnNorteLayout);
         jPnNorteLayout.setHorizontalGroup(
             jPnNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 743, Short.MAX_VALUE)
+            .addGap(0, 922, Short.MAX_VALUE)
         );
         jPnNorteLayout.setVerticalGroup(
             jPnNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,43 +289,117 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jPnNorte3.setPreferredSize(new java.awt.Dimension(450, 50));
         jPnlFondoCrear.add(jPnNorte3, java.awt.BorderLayout.PAGE_START);
 
-        jPnCentro3.setLayout(new java.awt.GridLayout(4, 2));
+        jPnCentro3.setLayout(new java.awt.BorderLayout());
+
+        jPanel6.setPreferredSize(new java.awt.Dimension(350, 288));
+
+        jLbImagenCrear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbImagenCrear.setText("Imagen");
+        jLbImagenCrear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        jBtnCargarImagenCrear.setText("Cargar Imagen");
+        jBtnCargarImagenCrear.setFocusable(false);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLbImagenCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jBtnCargarImagenCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLbImagenCrear, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtnCargarImagenCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPnCentro3.add(jPanel6, java.awt.BorderLayout.LINE_START);
+
+        jPanel3.setPreferredSize(new java.awt.Dimension(924, 50));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 924, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPnCentro3.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+
+        jPanel4.setPreferredSize(new java.awt.Dimension(924, 50));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 924, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPnCentro3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
+
+        jPanel5.setPreferredSize(new java.awt.Dimension(70, 238));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 288, Short.MAX_VALUE)
+        );
+
+        jPnCentro3.add(jPanel5, java.awt.BorderLayout.LINE_END);
+
+        jPanel7.setLayout(new java.awt.GridLayout(5, 2));
+        jPanel7.add(jLabel1);
+        jPanel7.add(jLabel2);
 
         jLbNombre1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbNombre1.setText("Nombre:");
-        jPnCentro3.add(jLbNombre1);
+        jPanel7.add(jLbNombre1);
 
         jTxfNombreCrear.setBackground(new java.awt.Color(255, 255, 255));
         jTxfNombreCrear.setForeground(new java.awt.Color(0, 0, 0));
-        jPnCentro3.add(jTxfNombreCrear);
+        jPanel7.add(jTxfNombreCrear);
 
         jLbDescripcion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbDescripcion1.setText("Descripción:");
-        jPnCentro3.add(jLbDescripcion1);
+        jPanel7.add(jLbDescripcion1);
 
         jTxfDescripcionCrear.setBackground(new java.awt.Color(255, 255, 255));
         jTxfDescripcionCrear.setForeground(new java.awt.Color(0, 0, 0));
-        jPnCentro3.add(jTxfDescripcionCrear);
+        jPanel7.add(jTxfDescripcionCrear);
 
         jLbPrecioVenta1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbPrecioVenta1.setText("Precio Venta:");
-        jPnCentro3.add(jLbPrecioVenta1);
+        jPanel7.add(jLbPrecioVenta1);
 
         jTxfPrecioVentaCrear.setBackground(new java.awt.Color(255, 255, 255));
         jTxfPrecioVentaCrear.setForeground(new java.awt.Color(0, 0, 0));
-        jTxfPrecioVentaCrear.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTxfPrecioVentaCrearKeyTyped(evt);
-            }
-        });
-        jPnCentro3.add(jTxfPrecioVentaCrear);
+        jPanel7.add(jTxfPrecioVentaCrear);
 
-        jBtnCargarImagenCrear.setText("Cargar Imagen");
-        jPnCentro3.add(jBtnCargarImagenCrear);
-
-        jLbImagenCrear.setText("Imagen");
-        jLbImagenCrear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPnCentro3.add(jLbImagenCrear);
+        jPnCentro3.add(jPanel7, java.awt.BorderLayout.CENTER);
 
         jPnlFondoCrear.add(jPnCentro3, java.awt.BorderLayout.CENTER);
 
@@ -349,13 +438,13 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jPnNorte2.setPreferredSize(new java.awt.Dimension(450, 50));
 
         jLbIdProducto.setForeground(new java.awt.Color(255, 255, 255));
-        jLbIdProducto.setText("Id");
+        jLbIdProducto.setText("ID");
         jPnNorte2.add(jLbIdProducto);
 
-        jTxfIdProducto.setBackground(new java.awt.Color(255, 255, 255));
-        jTxfIdProducto.setForeground(new java.awt.Color(0, 0, 0));
-        jTxfIdProducto.setPreferredSize(new java.awt.Dimension(100, 24));
-        jPnNorte2.add(jTxfIdProducto);
+        jTxfIdProductoModificar.setBackground(new java.awt.Color(255, 255, 255));
+        jTxfIdProductoModificar.setForeground(new java.awt.Color(0, 0, 0));
+        jTxfIdProductoModificar.setPreferredSize(new java.awt.Dimension(100, 24));
+        jPnNorte2.add(jTxfIdProductoModificar);
 
         jBtnBuscar.setText("Buscar");
         jBtnBuscar.setFocusPainted(false);
@@ -375,45 +464,127 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         });
         jPnNorte2.add(jBtnModificar);
 
+        jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
+            }
+        });
+        jPnNorte2.add(jBtnCancelar);
+
         jPnlFondoModificar.add(jPnNorte2, java.awt.BorderLayout.PAGE_START);
 
-        jPnCentro2.setLayout(new java.awt.GridLayout(4, 2));
+        jPnCentro2.setLayout(new java.awt.BorderLayout());
+
+        jPanel8.setPreferredSize(new java.awt.Dimension(70, 288));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 288, Short.MAX_VALUE)
+        );
+
+        jPnCentro2.add(jPanel8, java.awt.BorderLayout.LINE_END);
+
+        jPanel10.setPreferredSize(new java.awt.Dimension(924, 50));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 924, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPnCentro2.add(jPanel10, java.awt.BorderLayout.PAGE_START);
+
+        jPanel11.setPreferredSize(new java.awt.Dimension(924, 50));
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 924, Short.MAX_VALUE)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPnCentro2.add(jPanel11, java.awt.BorderLayout.PAGE_END);
+
+        jPanel12.setLayout(new java.awt.GridLayout(5, 2));
+        jPanel12.add(jLabel3);
+        jPanel12.add(jLabel4);
 
         jLbNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbNombre.setText("Nombre:");
-        jPnCentro2.add(jLbNombre);
+        jPanel12.add(jLbNombre);
 
         jTxfNombreModificar.setBackground(new java.awt.Color(255, 255, 255));
         jTxfNombreModificar.setForeground(new java.awt.Color(0, 0, 0));
-        jPnCentro2.add(jTxfNombreModificar);
+        jPanel12.add(jTxfNombreModificar);
 
         jLbDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbDescripcion.setText("Descripción:");
-        jPnCentro2.add(jLbDescripcion);
+        jPanel12.add(jLbDescripcion);
 
         jTxfDescripcionModificar.setBackground(new java.awt.Color(255, 255, 255));
         jTxfDescripcionModificar.setForeground(new java.awt.Color(0, 0, 0));
-        jPnCentro2.add(jTxfDescripcionModificar);
+        jPanel12.add(jTxfDescripcionModificar);
 
         jLbPrecioVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbPrecioVenta.setText("Precio Venta:");
-        jPnCentro2.add(jLbPrecioVenta);
+        jPanel12.add(jLbPrecioVenta);
 
         jTxfPrecioVentaMoficar.setBackground(new java.awt.Color(255, 255, 255));
         jTxfPrecioVentaMoficar.setForeground(new java.awt.Color(0, 0, 0));
-        jTxfPrecioVentaMoficar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTxfPrecioVentaMoficarKeyTyped(evt);
-            }
-        });
-        jPnCentro2.add(jTxfPrecioVentaMoficar);
+        jPanel12.add(jTxfPrecioVentaMoficar);
+
+        jPnCentro2.add(jPanel12, java.awt.BorderLayout.CENTER);
+
+        jPanel13.setPreferredSize(new java.awt.Dimension(350, 288));
+
+        jLbImagenModificar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbImagenModificar.setText("Imagen");
+        jLbImagenModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         jBtnCargarImagenModificar.setText("Cargar Imagen");
-        jPnCentro2.add(jBtnCargarImagenModificar);
+        jBtnCargarImagenModificar.setFocusable(false);
 
-        jLbImagenModificar.setText("Imagen");
-        jLbImagenModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPnCentro2.add(jLbImagenModificar);
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLbImagenModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jBtnCargarImagenModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLbImagenModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtnCargarImagenModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPnCentro2.add(jPanel13, java.awt.BorderLayout.LINE_START);
 
         jPnlFondoModificar.add(jPnCentro2, java.awt.BorderLayout.CENTER);
 
@@ -509,7 +680,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jPnlFondo.setLayout(jPnlFondoLayout);
         jPnlFondoLayout.setHorizontalGroup(
             jPnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTbPnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+            .addComponent(jTbPnProductos)
         );
         jPnlFondoLayout.setVerticalGroup(
             jPnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,7 +693,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblProductosMouseClicked
-
+        
         int i = jTblProductos.getSelectedRow();
         TableModel model = jTblProductos.getModel();
         jLblProductoNombre.setText(model.getValueAt(i, 1).toString());
@@ -532,16 +703,21 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTblProductosMouseClicked
 
     private void jTblEliminarProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblEliminarProductosMouseClicked
-
+        
         int i = jTblEliminarProductos.getSelectedRow();
         TableModel model = jTblEliminarProductos.getModel();
         this.jTxfID.setText(model.getValueAt(i, 0).toString());
     }//GEN-LAST:event_jTblEliminarProductosMouseClicked
 
+    /**
+     * Medoto encargado de eliminar un producto en la base de datos
+     *
+     * @param evt
+     */
     private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
-
+        
         String id = jTxfID.getText().trim();
-
+        
         ProductoService service = new ProductoService();
         // Inyecta la dependencia
         if (id.equals("")) {
@@ -549,9 +725,9 @@ public class GUIProductos extends javax.swing.JInternalFrame {
             Messages.warningMessage("Debe ingresar un ID para poder borrar un registro", "Warning");
             return;
         }
-
+        
         int confirmacion = Messages.confirmMessage("¿ Desea borrar el registro ?", "Confirm");
-
+        
         try {
             if (confirmacion < 1 && confirmacion > -1) {
                 boolean aux = service.eliminar(Integer.parseInt(id));
@@ -585,137 +761,6 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTbPnProductosMouseClicked
 
     /**
-     * Modifica un plato con los atributos que tiene el formulario
-     *
-     * @param evt evento del boton
-     */
-    private void jBtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnModificarActionPerformed
-        String nombre = jTxfNombreModificar.getText();
-        String descripcion = jTxfDescripcionModificar.getText();
-        String precio = jTxfPrecioVentaMoficar.getText();
-        Producto proModificar = new Producto();
-        proModificar.setId(Integer.parseInt(jTxfIdProducto.getText()));
-        proModificar.setNombre(nombre);
-        proModificar.setDescripcion(descripcion);
-        proModificar.setPrecioVenta(Double.parseDouble(precio));
-        ProductoService service = new ProductoService();
-        boolean respuesta;
-        if (nombre.equals("") || precio.equals("") || descripcion.equals("")) {
-            jTxfNombreModificar.requestFocus();
-            Messages.warningMessage("Campos vacios: Error al modificar", "Warning");
-            return;
-        }
-        try {
-            respuesta = service.actualizar(proModificar);
-            if (respuesta == false) {
-                clearControls();
-                this.jTxfIdProducto.requestFocus();
-                Messages.warningMessage("No se pudo modificar el Producto", "Warning");
-                this.jBtnModificar.setVisible(false);
-                return;
-            }
-        } catch (Exception ex) {
-            clearControls();
-            successMessage(ex.getMessage(), "Atención");
-            return;
-        }
-        clearControls();
-        this.jTxfIdProducto.requestFocus();
-        successMessage("Se modifico el producto con exito.", "EXITO");
-        proModificar = null;
-        this.jBtnModificar.setVisible(false);
-        EstadoListaProductos = true;
-    }//GEN-LAST:event_jBtnModificarActionPerformed
-
-    /**
-     * Metodo encargado de buscar en la base de datos un identificador de un
-     * plato
-     *
-     * @param evt Accion evento del formulario, en este caso accion buscar
-     */
-    private void jBtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBuscarActionPerformed
-        String id = jTxfIdProducto.getText().trim();
-
-        ProductoService service = new ProductoService();
-
-        if (id.equals("")) {
-            jTxfIdProducto.requestFocus();
-            Messages.warningMessage("ERROR: El campo Id esta vacio.", "Warning");
-            return;
-        }
-        Producto producto;
-        try {
-            producto = service.buscar(Integer.parseInt(id));
-            if (producto == null) {
-                jTxfIdProducto.requestFocus();
-                clearControls();
-                Messages.warningMessage("ERROR: No se encontro el producto.", "Warning");
-                return;
-            }
-        } catch (Exception ex) {
-            clearControls();
-            successMessage(ex.getMessage(), "Atención");
-            return;
-        }
-        clearControls();
-        showData(producto);
-        this.jBtnModificar.setVisible(true);    }//GEN-LAST:event_jBtnBuscarActionPerformed
-
-    /**
-     * Validacion para leer solo numeros
-     *
-     * @param evt Evento del formulario
-     */
-    private void jTxfPrecioVentaMoficarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxfPrecioVentaMoficarKeyTyped
-        int key = (int) evt.getKeyChar();
-
-        if (key >= 46 && key <= 57) {
-            if (key == 46) {
-                String dato = jTxfPrecioVentaMoficar.getText();
-                for (int i = 0; i < dato.length(); i++) {
-                    if (dato.contains(".")) {
-                        evt.setKeyChar((char) KeyEvent.VK_CLEAR);
-                    }
-                }
-                if (key == 47) {
-                    evt.setKeyChar((char) KeyEvent.VK_CLEAR);
-                    evt.consume();
-                }
-            }
-        } else {
-            evt.setKeyChar((char) KeyEvent.VK_CLEAR);
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTxfPrecioVentaMoficarKeyTyped
-
-    /**
-     * Validacion para leer solo numeros
-     *
-     * @param evt Evento del formulario
-     */
-    private void jTxfPrecioVentaCrearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxfPrecioVentaCrearKeyTyped
-        int key = (int) evt.getKeyChar();
-
-        if (key >= 46 && key <= 57) {
-            if (key == 46) {
-                String dato = jTxfPrecioVentaMoficar.getText();
-                for (int i = 0; i < dato.length(); i++) {
-                    if (dato.contains(".")) {
-                        evt.setKeyChar((char) KeyEvent.VK_CLEAR);
-                    }
-                }
-                if (key == 47) {
-                    evt.setKeyChar((char) KeyEvent.VK_CLEAR);
-                    evt.consume();
-                }
-            }
-        } else {
-            evt.setKeyChar((char) KeyEvent.VK_CLEAR);
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTxfPrecioVentaCrearKeyTyped
-
-    /**
      * Limpia los controles para el formulario de crear producto
      *
      * @param evt evento del formulario
@@ -735,7 +780,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         String nombre = jTxfNombreCrear.getText();
         String descripcion = jTxfDescripcionCrear.getText();
         String precio = jTxfPrecioVentaCrear.getText();
-
+        
         if (descripcion.equals("") || nombre.equals("") || precio.equals("")) {
             jTxfNombreCrear.requestFocus();
             Messages.warningMessage("ERROR AL CREAR PRODUCTO: \nCampos vacios", "Warning");
@@ -745,7 +790,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         newProducto.setNombre(nombre);
         newProducto.setDescripcion(descripcion);
         newProducto.setPrecioVenta(Double.parseDouble(precio));
-
+        
         try {
             if (service.crear(newProducto)) {
                 successMessage("Producto creado con éxito.", "Atención");
@@ -760,15 +805,113 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         EstadoListaProductos = true;
     }//GEN-LAST:event_jBtnCrearActionPerformed
 
+    /**
+     * Modifica un plato con los atributos que tiene el formulario
+     *
+     * @param evt evento del boton
+     */
+    private void jBtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnModificarActionPerformed
+        String nombre = jTxfNombreModificar.getText();
+        String descripcion = jTxfDescripcionModificar.getText();
+        String precio = jTxfPrecioVentaMoficar.getText();
+        Producto proModificar = new Producto();
+        proModificar.setId(Integer.parseInt(jTxfIdProductoModificar.getText()));
+        proModificar.setNombre(nombre);
+        proModificar.setDescripcion(descripcion);
+        proModificar.setPrecioVenta(Double.parseDouble(precio));
+        ProductoService service = new ProductoService();
+        boolean respuesta;
+        if (nombre.equals("") || precio.equals("") || descripcion.equals("")) {
+            jTxfNombreModificar.requestFocus();
+            Messages.warningMessage("Campos vacios: Error al modificar", "Warning");
+            return;
+        }
+        try {
+            respuesta = service.actualizar(proModificar);
+            if (respuesta == false) {
+                clearControls();
+                this.jTxfIdProductoModificar.requestFocus();
+                Messages.warningMessage("No se pudo modificar el Producto", "Warning");
+                this.jBtnModificar.setVisible(false);
+                return;
+            }
+        } catch (Exception ex) {
+            clearControls();
+            successMessage(ex.getMessage(), "Atención");
+            return;
+        }
+        clearControls();
+        this.jTxfIdProductoModificar.requestFocus();
+        successMessage("Se modifico el producto con exito.", "EXITO");
+        proModificar = null;
+        this.jBtnModificar.setVisible(false);
+        this.jBtnBuscar.setVisible(true);
+        this.jBtnCancelar.setVisible(false);
+        this.jTxfIdProductoModificar.setEnabled(true);
+        EstadoListaProductos = true;
+    }//GEN-LAST:event_jBtnModificarActionPerformed
+
+    /**
+     * Metodo encargado de buscar en la base de datos un identificador de un
+     * plato
+     *
+     * @param evt Accion evento del formulario, en este caso accion buscar
+     */
+    private void jBtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBuscarActionPerformed
+        String id = jTxfIdProductoModificar.getText().trim();
+        
+        ProductoService service = new ProductoService();
+        
+        if (id.equals("")) {
+            jTxfIdProductoModificar.requestFocus();
+            Messages.warningMessage("ERROR: El campo Id esta vacio.", "Warning");
+            return;
+        }
+        Producto producto;
+        try {
+            producto = service.buscar(Integer.parseInt(id));
+            if (producto == null) {
+                jTxfIdProductoModificar.requestFocus();
+                clearControls();
+                Messages.warningMessage("ERROR: No se encontro el producto.", "Warning");
+                return;
+            }
+        } catch (NumberFormatException ex) {
+            clearControls();
+            successMessage(ex.getMessage(), "Atención");
+            return;
+        }
+        clearControls();
+        showData(producto);
+        jTxfIdProductoModificar.setEnabled(false);
+        jBtnModificar.setVisible(true);
+        jBtnCancelar.setVisible(true);
+        jBtnBuscar.setVisible(false);
+        jTxfIdProductoModificar.setEnabled(false);
+    }//GEN-LAST:event_jBtnBuscarActionPerformed
+
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        jBtnModificar.setVisible(false);
+        jBtnCancelar.setVisible(false);
+        jBtnBuscar.setVisible(true);
+        jTxfIdProductoModificar.setEnabled(true);
+        this.clearControls();
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnBuscar;
+    private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnCargarImagenCrear;
     private javax.swing.JButton jBtnCargarImagenModificar;
     private javax.swing.JButton jBtnCrear;
     private javax.swing.JButton jBtnEliminar;
     private javax.swing.JButton jBtnLimpiar;
     private javax.swing.JButton jBtnModificar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLbDescripcion;
     private javax.swing.JLabel jLbDescripcion1;
     private javax.swing.JLabel jLbIdProducto;
@@ -783,7 +926,17 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLblProductoNombre;
     private javax.swing.JLabel jLblProductoPrecioVenta;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPnCentro;
     private javax.swing.JPanel jPnCentro1;
     private javax.swing.JPanel jPnCentro2;
@@ -812,7 +965,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTxfDescripcionCrear;
     private javax.swing.JTextField jTxfDescripcionModificar;
     private javax.swing.JTextField jTxfID;
-    private javax.swing.JTextField jTxfIdProducto;
+    private javax.swing.JTextField jTxfIdProductoModificar;
     private javax.swing.JTextField jTxfNombreCrear;
     private javax.swing.JTextField jTxfNombreModificar;
     private javax.swing.JTextField jTxfPrecioVentaCrear;
@@ -825,7 +978,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
      */
     private void mostrarTabla(String opcion) {
         String dataTable[][] = new String[productos.size()][5];
-
+        
         for (int i = 0; i < productos.size(); i++) {
             dataTable[i][0] = Integer.toString(productos.get(i).getId());
             dataTable[i][1] = productos.get(i).getNombre();
@@ -841,7 +994,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
                 jTblEliminarProductos.setModel(new javax.swing.table.DefaultTableModel(
                         dataTable, new String[]{"Id", "Nombre", "Descripción", "Precio Venta", "Imagen"}));
         }
-
+        
     }
 
     /**
@@ -887,7 +1040,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
      * Este metodo limpia todos los controles en el formulario
      */
     public void clearControls() {
-
+        
         jTxfNombreModificar.setText("");
         jTxfDescripcionModificar.setText("");
         jTxfPrecioVentaMoficar.setText("");
