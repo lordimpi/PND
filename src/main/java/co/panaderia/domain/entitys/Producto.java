@@ -11,11 +11,11 @@ public class Producto {
     private String Nombre;
     private String Descripcion;
     private double PrecioVenta;
-    private String Imagen;
+    private byte[] Imagen;
 
     //Constructores
     public Producto() {
-        this.Imagen = "";
+        this.Imagen = null;
     }
 
     public Producto(int Id, String Nombre, String Descripcion, double PrecioVenta) {
@@ -58,11 +58,11 @@ public class Producto {
         this.PrecioVenta = PrecioVenta;
     }
 
-    public String getImagen() {
+    public byte[] getImagen() {
         return Imagen;
     }
 
-    public void setImagen(String Imagen) {
+    public void setImagen(byte[] Imagen) {
         this.Imagen = Imagen;
     }
 

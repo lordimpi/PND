@@ -443,6 +443,9 @@
                                 <Property name="text" type="java.lang.String" value="Cargar Imagen"/>
                                 <Property name="focusable" type="boolean" value="false"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCargarImagenCrearActionPerformed"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -691,6 +694,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[100, 24]"/>
                             </Property>
@@ -933,6 +937,9 @@
                                 <Property name="text" type="java.lang.String" value="Cargar Imagen"/>
                                 <Property name="focusable" type="boolean" value="false"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBtnCargarImagenModificarMousePressed"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -1085,6 +1092,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTxfID">
                       <Properties>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[100, 24]"/>
                         </Property>

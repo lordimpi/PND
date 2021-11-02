@@ -6,11 +6,22 @@ import co.panaderia.infra.Messages;
 import static co.panaderia.infra.Messages.successMessage;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
 
 /**
@@ -23,8 +34,21 @@ public class GUIProductos extends javax.swing.JInternalFrame {
      * Almacena una lista de productos
      */
     private List<Producto> productos;
-    
+
+    /**
+     * Guarda un estado para refrescar la lista de productos
+     */
     private boolean EstadoListaProductos;
+
+    /**
+     * Guarda la ruta donde se encuenta un archivo
+     */
+    private String Ruta;
+
+    /**
+     * Arreglo de bytes de una imagen
+     */
+    private byte[] imagen;
 
     /**
      * Creates new form GUIProductos
@@ -40,6 +64,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         mostrarTabla("Eliminar");
         jBtnModificar.setVisible(false);
         jBtnCancelar.setVisible(false);
+        jBtnCargarImagenModificar.setVisible(false);
     }
 
     /**
@@ -298,6 +323,11 @@ public class GUIProductos extends javax.swing.JInternalFrame {
 
         jBtnCargarImagenCrear.setText("Cargar Imagen");
         jBtnCargarImagenCrear.setFocusable(false);
+        jBtnCargarImagenCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCargarImagenCrearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -442,6 +472,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
 
         jTxfIdProductoModificar.setBackground(new java.awt.Color(255, 255, 255));
         jTxfIdProductoModificar.setForeground(new java.awt.Color(0, 0, 0));
+        jTxfIdProductoModificar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTxfIdProductoModificar.setPreferredSize(new java.awt.Dimension(100, 24));
         jPnNorte2.add(jTxfIdProductoModificar);
 
@@ -558,6 +589,11 @@ public class GUIProductos extends javax.swing.JInternalFrame {
 
         jBtnCargarImagenModificar.setText("Cargar Imagen");
         jBtnCargarImagenModificar.setFocusable(false);
+        jBtnCargarImagenModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jBtnCargarImagenModificarMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -653,6 +689,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jLblID.setText("ID");
         jPnNorte1.add(jLblID);
 
+        jTxfID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTxfID.setMinimumSize(new java.awt.Dimension(100, 24));
         jTxfID.setPreferredSize(new java.awt.Dimension(200, 24));
         jPnNorte1.add(jTxfID);
@@ -691,8 +728,14 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Evento encargado de mostrar la informacion para cada producto de la lista
+     * de productos
+     *
+     * @param evt
+     */
     private void jTblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblProductosMouseClicked
-        
+
         int i = jTblProductos.getSelectedRow();
         TableModel model = jTblProductos.getModel();
         jLblProductoNombre.setText(model.getValueAt(i, 1).toString());
@@ -701,8 +744,14 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         addIcon(jLblCargarImg, "src/main/java/resources/ProductoLogo.png");
     }//GEN-LAST:event_jTblProductosMouseClicked
 
+    /**
+     * Evento encargado de capturar el indice de la fila para la tabla de
+     * eliminar productos
+     *
+     * @param evt Evento del formulario
+     */
     private void jTblEliminarProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblEliminarProductosMouseClicked
-        
+
         int i = jTblEliminarProductos.getSelectedRow();
         TableModel model = jTblEliminarProductos.getModel();
         this.jTxfID.setText(model.getValueAt(i, 0).toString());
@@ -714,9 +763,9 @@ public class GUIProductos extends javax.swing.JInternalFrame {
      * @param evt
      */
     private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
-        
+
         String id = jTxfID.getText().trim();
-        
+
         ProductoService service = new ProductoService();
         // Inyecta la dependencia
         if (id.equals("")) {
@@ -724,9 +773,9 @@ public class GUIProductos extends javax.swing.JInternalFrame {
             Messages.warningMessage("Debe ingresar un ID para poder borrar un registro", "Warning");
             return;
         }
-        
+
         int confirmacion = Messages.confirmMessage("¿ Desea borrar el registro ?", "Confirm");
-        
+
         try {
             if (confirmacion < 1 && confirmacion > -1) {
                 boolean aux = service.eliminar(Integer.parseInt(id));
@@ -750,6 +799,12 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         mostrarTabla("Eliminar");
     }//GEN-LAST:event_jBtnEliminarActionPerformed
 
+    /**
+     * Evento encargado de actualizar las tablas para listar productos y
+     * eliminar productos
+     *
+     * @param evt
+     */
     private void jTbPnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbPnProductosMouseClicked
         if (EstadoListaProductos) {
             cargarLista();
@@ -779,7 +834,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         String nombre = jTxfNombreCrear.getText();
         String descripcion = jTxfDescripcionCrear.getText();
         String precio = jTxfPrecioVentaCrear.getText();
-        
+
         if (descripcion.equals("") || nombre.equals("") || precio.equals("")) {
             jTxfNombreCrear.requestFocus();
             Messages.warningMessage("ERROR AL CREAR PRODUCTO: \nCampos vacios", "Warning");
@@ -789,7 +844,11 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         newProducto.setNombre(nombre);
         newProducto.setDescripcion(descripcion);
         newProducto.setPrecioVenta(Double.parseDouble(precio));
-        
+        if (Ruta == null) {
+            newProducto.setImagen(imagen);
+        } else {
+            newProducto.setImagen(obtenerImagen(Ruta));
+        }
         try {
             if (service.crear(newProducto)) {
                 successMessage("Producto creado con éxito.", "Atención");
@@ -801,6 +860,8 @@ public class GUIProductos extends javax.swing.JInternalFrame {
             successMessage(ex.getMessage(), "Atención");
         }
         newProducto = null;
+        Ruta = null;
+        imagen = null;
         EstadoListaProductos = true;
     }//GEN-LAST:event_jBtnCrearActionPerformed
 
@@ -818,6 +879,11 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         proModificar.setNombre(nombre);
         proModificar.setDescripcion(descripcion);
         proModificar.setPrecioVenta(Double.parseDouble(precio));
+        if (Ruta == null) {
+            proModificar.setImagen(imagen);
+        } else {
+            proModificar.setImagen(obtenerImagen(Ruta));
+        }
         ProductoService service = new ProductoService();
         boolean respuesta;
         if (nombre.equals("") || precio.equals("") || descripcion.equals("")) {
@@ -843,9 +909,12 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         this.jTxfIdProductoModificar.requestFocus();
         successMessage("Se modifico el producto con exito.", "EXITO");
         proModificar = null;
+        Ruta = null;
+        imagen = null;
         this.jBtnModificar.setVisible(false);
         this.jBtnBuscar.setVisible(true);
         this.jBtnCancelar.setVisible(false);
+        this.jBtnCargarImagenModificar.setVisible(false);
         this.jTxfIdProductoModificar.setEnabled(true);
         EstadoListaProductos = true;
     }//GEN-LAST:event_jBtnModificarActionPerformed
@@ -858,9 +927,9 @@ public class GUIProductos extends javax.swing.JInternalFrame {
      */
     private void jBtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBuscarActionPerformed
         String id = jTxfIdProductoModificar.getText().trim();
-        
+
         ProductoService service = new ProductoService();
-        
+
         if (id.equals("")) {
             jTxfIdProductoModificar.requestFocus();
             Messages.warningMessage("ERROR: El campo Id esta vacio.", "Warning");
@@ -875,27 +944,58 @@ public class GUIProductos extends javax.swing.JInternalFrame {
                 Messages.warningMessage("ERROR: No se encontro el producto.", "Warning");
                 return;
             }
+            clearControls();
+            showData(producto);
         } catch (NumberFormatException ex) {
             clearControls();
             successMessage(ex.getMessage(), "Atención");
             return;
+        } catch (IOException ex) {
+            Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
+            successMessage(ex.getMessage(), "Atención");
         }
-        clearControls();
-        showData(producto);
+
+        Ruta = null;
         jTxfIdProductoModificar.setEnabled(false);
         jBtnModificar.setVisible(true);
         jBtnCancelar.setVisible(true);
+        jBtnCargarImagenModificar.setVisible(true);
         jBtnBuscar.setVisible(false);
         jTxfIdProductoModificar.setEnabled(false);
     }//GEN-LAST:event_jBtnBuscarActionPerformed
 
+    /**
+     * Boton encargado de cancelar una modificación de un producto
+     *
+     * @param evt
+     */
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        Ruta = null;
         jBtnModificar.setVisible(false);
         jBtnCancelar.setVisible(false);
+        jBtnCargarImagenModificar.setVisible(false);
         jBtnBuscar.setVisible(true);
         jTxfIdProductoModificar.setEnabled(true);
         this.clearControls();
     }//GEN-LAST:event_jBtnCancelarActionPerformed
+
+    /**
+     * Método encargado de seleccionar una imagen desde el computador
+     *
+     * @param evt Evento del formulario
+     */
+    private void jBtnCargarImagenModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnCargarImagenModificarMousePressed
+        this.seleccionarImagen(jLbImagenModificar);
+    }//GEN-LAST:event_jBtnCargarImagenModificarMousePressed
+
+    /**
+     * Método encargado de seleccionar una imagen desde el computador
+     *
+     * @param evt Evento del formulario
+     */
+    private void jBtnCargarImagenCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCargarImagenCrearActionPerformed
+        this.seleccionarImagen(jLbImagenCrear);
+    }//GEN-LAST:event_jBtnCargarImagenCrearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -977,7 +1077,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
      */
     private void mostrarTabla(String opcion) {
         String dataTable[][] = new String[productos.size()][5];
-        
+
         for (int i = 0; i < productos.size(); i++) {
             dataTable[i][0] = Integer.toString(productos.get(i).getId());
             dataTable[i][1] = productos.get(i).getNombre();
@@ -993,7 +1093,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
                 jTblEliminarProductos.setModel(new javax.swing.table.DefaultTableModel(
                         dataTable, new String[]{"Id", "Nombre", "Descripción", "Precio Venta", "Imagen"}));
         }
-        
+
     }
 
     /**
@@ -1029,22 +1129,75 @@ public class GUIProductos extends javax.swing.JInternalFrame {
      *
      * @param mainDish Objeto plato principal
      */
-    private void showData(Producto producto) {
+    private void showData(Producto producto) throws IOException {
         jTxfNombreModificar.setText(producto.getNombre());
         jTxfDescripcionModificar.setText(producto.getDescripcion());
         jTxfPrecioVentaMoficar.setText(Double.toString(producto.getPrecioVenta()));
+        if (producto.getImagen() != null) {
+            imagen = producto.getImagen();
+            BufferedImage bufferedImage = null;
+            InputStream inputStream = new ByteArrayInputStream(imagen);
+            bufferedImage = ImageIO.read(inputStream);
+            ImageIcon myIcon = new ImageIcon(bufferedImage.getScaledInstance(
+                    335, 217, 0));
+            jLbImagenModificar.setIcon(myIcon);
+        }
     }
 
     /**
      * Este metodo limpia todos los controles en el formulario
      */
     public void clearControls() {
-        
+
         jTxfNombreModificar.setText("");
         jTxfDescripcionModificar.setText("");
         jTxfPrecioVentaMoficar.setText("");
         jTxfNombreCrear.setText("");
         jTxfDescripcionCrear.setText("");
         jTxfPrecioVentaCrear.setText("");
+        jLbImagenModificar.setIcon(null);
+        jLbImagenCrear.setIcon(null);
+    }
+
+    /**
+     * Muestra en un label una imagen seleccionado desde el explorador
+     *
+     * @param lb
+     */
+    public void seleccionarImagen(JLabel lb) {
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
+        fileChooser.setFileFilter(extensionFilter);
+
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            Ruta = fileChooser.getSelectedFile().getAbsolutePath();
+            Image myImage = new ImageIcon(Ruta).getImage();
+            ImageIcon myIcon = new ImageIcon(myImage.getScaledInstance(
+                    lb.getWidth(), lb.getHeight(), 0));
+            lb.setIcon(myIcon);
+        }
+    }
+
+    /**
+     * Metodo encargado de convertir una igamen en arreglo de bytes
+     *
+     * @param rutaImage ruta de la imagen a convertir
+     * @return Arreglo de bytes
+     */
+    private byte[] obtenerImagen(String rutaImage) {
+        if (rutaImage == null) {
+            return null;
+        }
+        File imagenf = new File(rutaImage);
+        try {
+            byte[] icono = new byte[(int) imagenf.length()];
+            InputStream input = new FileInputStream(imagenf);
+            input.read(icono);
+            return icono;
+        } catch (IOException ex) {
+            Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
+            successMessage(ex.getMessage(), "Atención");
+        }
+        return null;
     }
 }

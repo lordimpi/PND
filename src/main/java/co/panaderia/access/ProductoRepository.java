@@ -81,6 +81,7 @@ public class ProductoRepository implements IProductoRepository {
                 producto.setNombre(rs.getString("pr_nombre"));
                 producto.setDescripcion(rs.getString("pr_descripcion"));
                 producto.setPrecioVenta(rs.getDouble("pr_precioVenta"));
+                producto.setImagen(rs.getBytes("pr_imagen"));
             }
             this.disconnect();
 
@@ -99,13 +100,14 @@ public class ProductoRepository implements IProductoRepository {
     @Override
     public boolean crear(Producto nuevoProducto) {
         try {
-            String sql = "{CALL InsertarProducto(?, ?, ?)}";
+            String sql = "{CALL InsertarProducto(?, ?, ?, ?)}";
             this.connect();
             CallableStatement cstm = conn.prepareCall(sql);
 
             cstm.setString(1, nuevoProducto.getNombre());
             cstm.setString(2, nuevoProducto.getDescripcion());
             cstm.setDouble(3, nuevoProducto.getPrecioVenta());
+            cstm.setBytes(4, nuevoProducto.getImagen());
 
             cstm.executeQuery();
             this.disconnect();
@@ -127,7 +129,7 @@ public class ProductoRepository implements IProductoRepository {
     @Override
     public boolean actualizar(Producto productoModificado) {
         try {
-            String sql = "{CALL EditarProducto(?, ?, ?, ?)}";
+            String sql = "{CALL EditarProducto(?, ?, ?, ?, ?)}";
             this.connect();
             CallableStatement cstm = conn.prepareCall(sql);
 
@@ -135,6 +137,7 @@ public class ProductoRepository implements IProductoRepository {
             cstm.setString(2, productoModificado.getNombre());
             cstm.setString(3, productoModificado.getDescripcion());
             cstm.setDouble(4, productoModificado.getPrecioVenta());
+            cstm.setBytes(5, productoModificado.getImagen());
             cstm.executeQuery();
 
             this.disconnect();
