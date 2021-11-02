@@ -39,13 +39,24 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
      * Guarda la instancia del formulario Productos
      */
     private GUIProductos ventaProductos;
+    private GUIClientes ventanaClientes;
+    private GUIContabilidad ventanaContabilidad;
+    private GUIEmpleados ventanaEmpleados;
+    private GUIInsumos ventanaInsumos;
+    private GUIProveedores ventanaProveedores;
 
     /**
      * Constructor que inicializa el formulario Menu admin
      *
+     * @throws java.beans.PropertyVetoException
      */
     public GUIMenuAdmin() throws PropertyVetoException {
         this.ventaProductos = new GUIProductos();
+        this.ventanaClientes = new GUIClientes();
+        this.ventanaContabilidad = new GUIContabilidad();
+        this.ventanaEmpleados = new GUIEmpleados();
+        this.ventanaInsumos = new GUIInsumos();
+        this.ventanaProveedores = new GUIProveedores();
         initComponents();
         cargarLista();
         setLocationRelativeTo(null);
@@ -66,9 +77,9 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         BtnHomePage = new javax.swing.JPanel();
         jLbHomePageIcono = new javax.swing.JLabel();
         jLbHomePage = new javax.swing.JLabel();
-        BtnMenus = new javax.swing.JPanel();
-        jLbMenusIcon = new javax.swing.JLabel();
-        jLbMenus = new javax.swing.JLabel();
+        BtnProveedores = new javax.swing.JPanel();
+        jLbProveedoresIcon = new javax.swing.JLabel();
+        jLbProveedores = new javax.swing.JLabel();
         BtnProductos = new javax.swing.JPanel();
         jLbProductosIcon = new javax.swing.JLabel();
         jLbProductos = new javax.swing.JLabel();
@@ -78,9 +89,9 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         BtnContabilidad = new javax.swing.JPanel();
         jLbContabilidadIcon = new javax.swing.JLabel();
         jLbContabilidad = new javax.swing.JLabel();
-        BtnUsuarios = new javax.swing.JPanel();
-        jLbUsuariosIcon = new javax.swing.JLabel();
-        jLbUsuarios = new javax.swing.JLabel();
+        BtnEmpleados = new javax.swing.JPanel();
+        jLbEmpleadosIcon = new javax.swing.JLabel();
+        jLbEmpleados = new javax.swing.JLabel();
         BtnClientes = new javax.swing.JPanel();
         jLbClientesIcon = new javax.swing.JLabel();
         jLbClientes = new javax.swing.JLabel();
@@ -141,42 +152,42 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
 
         jPnlSide.add(BtnHomePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 280, 40));
 
-        BtnMenus.setBackground(new java.awt.Color(64, 43, 100));
-        BtnMenus.addMouseListener(new java.awt.event.MouseAdapter() {
+        BtnProveedores.setBackground(new java.awt.Color(64, 43, 100));
+        BtnProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtnMenusMousePressed(evt);
+                BtnProveedoresMousePressed(evt);
             }
         });
 
-        jLbMenusIcon.setPreferredSize(new java.awt.Dimension(34, 35));
+        jLbProveedoresIcon.setPreferredSize(new java.awt.Dimension(34, 35));
 
-        jLbMenus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLbMenus.setForeground(new java.awt.Color(204, 204, 204));
-        jLbMenus.setText("Menus");
+        jLbProveedores.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLbProveedores.setForeground(new java.awt.Color(204, 204, 204));
+        jLbProveedores.setText("Proveedores");
 
-        javax.swing.GroupLayout BtnMenusLayout = new javax.swing.GroupLayout(BtnMenus);
-        BtnMenus.setLayout(BtnMenusLayout);
-        BtnMenusLayout.setHorizontalGroup(
-            BtnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnMenusLayout.createSequentialGroup()
+        javax.swing.GroupLayout BtnProveedoresLayout = new javax.swing.GroupLayout(BtnProveedores);
+        BtnProveedores.setLayout(BtnProveedoresLayout);
+        BtnProveedoresLayout.setHorizontalGroup(
+            BtnProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnProveedoresLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLbMenusIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLbProveedoresIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLbMenus, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLbProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-        BtnMenusLayout.setVerticalGroup(
-            BtnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnMenusLayout.createSequentialGroup()
-                .addGroup(BtnMenusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLbMenusIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(BtnMenusLayout.createSequentialGroup()
+        BtnProveedoresLayout.setVerticalGroup(
+            BtnProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnProveedoresLayout.createSequentialGroup()
+                .addGroup(BtnProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLbProveedoresIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BtnProveedoresLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLbMenus)))
+                        .addComponent(jLbProveedores)))
                 .addGap(21, 21, 21))
         );
 
-        jPnlSide.add(BtnMenus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, -1, 40));
+        jPnlSide.add(BtnProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, -1, 40));
 
         BtnProductos.setBackground(new java.awt.Color(64, 43, 100));
         BtnProductos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -289,42 +300,42 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
 
         jPnlSide.add(BtnContabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, -1, 40));
 
-        BtnUsuarios.setBackground(new java.awt.Color(64, 43, 100));
-        BtnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+        BtnEmpleados.setBackground(new java.awt.Color(64, 43, 100));
+        BtnEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtnUsuariosMousePressed(evt);
+                BtnEmpleadosMousePressed(evt);
             }
         });
 
-        jLbUsuariosIcon.setPreferredSize(new java.awt.Dimension(34, 35));
+        jLbEmpleadosIcon.setPreferredSize(new java.awt.Dimension(34, 35));
 
-        jLbUsuarios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLbUsuarios.setForeground(new java.awt.Color(204, 204, 204));
-        jLbUsuarios.setText("Usuarios");
+        jLbEmpleados.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLbEmpleados.setForeground(new java.awt.Color(204, 204, 204));
+        jLbEmpleados.setText("Empleados");
 
-        javax.swing.GroupLayout BtnUsuariosLayout = new javax.swing.GroupLayout(BtnUsuarios);
-        BtnUsuarios.setLayout(BtnUsuariosLayout);
-        BtnUsuariosLayout.setHorizontalGroup(
-            BtnUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnUsuariosLayout.createSequentialGroup()
+        javax.swing.GroupLayout BtnEmpleadosLayout = new javax.swing.GroupLayout(BtnEmpleados);
+        BtnEmpleados.setLayout(BtnEmpleadosLayout);
+        BtnEmpleadosLayout.setHorizontalGroup(
+            BtnEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnEmpleadosLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLbUsuariosIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLbEmpleadosIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLbUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLbEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-        BtnUsuariosLayout.setVerticalGroup(
-            BtnUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnUsuariosLayout.createSequentialGroup()
-                .addGroup(BtnUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLbUsuariosIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(BtnUsuariosLayout.createSequentialGroup()
+        BtnEmpleadosLayout.setVerticalGroup(
+            BtnEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnEmpleadosLayout.createSequentialGroup()
+                .addGroup(BtnEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLbEmpleadosIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BtnEmpleadosLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLbUsuarios)))
+                        .addComponent(jLbEmpleados)))
                 .addGap(21, 21, 21))
         );
 
-        jPnlSide.add(BtnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, -1, 40));
+        jPnlSide.add(BtnEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, -1, 40));
 
         BtnClientes.setBackground(new java.awt.Color(64, 43, 100));
         BtnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -541,12 +552,13 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void BtnHomePageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnHomePageMousePressed
         setColor(BtnHomePage);
         resetColor(BtnProductos);
-        resetColor(BtnMenus);
+        resetColor(BtnProveedores);
         resetColor(BtnInsumos);
         resetColor(BtnClientes);
-        resetColor(BtnUsuarios);
+        resetColor(BtnEmpleados);
         resetColor(BtnContabilidad);
 
+        cerrarFormularios("Home");
     }//GEN-LAST:event_BtnHomePageMousePressed
 
     /**
@@ -557,15 +569,19 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void BtnProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnProductosMousePressed
         resetColor(BtnHomePage);
         setColor(BtnProductos);
-        resetColor(BtnMenus);
+        resetColor(BtnProveedores);
         resetColor(BtnInsumos);
         resetColor(BtnClientes);
-        resetColor(BtnUsuarios);
+        resetColor(BtnEmpleados);
         resetColor(BtnContabilidad);
 
         if (!ventaProductos.isVisible()) {
-            ventaProductos.setMaximizable(true);
-            dskEscritorio.add(ventaProductos);
+            cerrarFormularios("Productos");
+            if (!dskEscritorio.isAncestorOf(ventaProductos)) {
+                dskEscritorio.add(ventaProductos);
+            } else {
+                dskEscritorio.setSelectedFrame(ventaProductos);
+            }
             ventaProductos.show();
         }
 
@@ -576,15 +592,26 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
      *
      * @param evt Evento del boton menus
      */
-    private void BtnMenusMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnMenusMousePressed
+    private void BtnProveedoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnProveedoresMousePressed
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
-        setColor(BtnMenus);
+        setColor(BtnProveedores);
         resetColor(BtnInsumos);
         resetColor(BtnClientes);
-        resetColor(BtnUsuarios);
+        resetColor(BtnEmpleados);
         resetColor(BtnContabilidad);
-    }//GEN-LAST:event_BtnMenusMousePressed
+
+        if (!ventanaProveedores.isVisible()) {
+            cerrarFormularios("Proveedores");
+            ventanaProveedores.setMaximizable(true);
+            if (!dskEscritorio.isAncestorOf(ventanaProveedores)) {
+                dskEscritorio.add(ventanaProveedores);
+            } else {
+                dskEscritorio.setSelectedFrame(ventanaProveedores);
+            }
+            ventanaProveedores.show();
+        }
+    }//GEN-LAST:event_BtnProveedoresMousePressed
 
     /**
      * Boton que despliega los clientes que hay en la base de datos
@@ -594,12 +621,22 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void BtnClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnClientesMousePressed
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
-        resetColor(BtnMenus);
+        resetColor(BtnProveedores);
         resetColor(BtnInsumos);
         setColor(BtnClientes);
-        resetColor(BtnUsuarios);
+        resetColor(BtnEmpleados);
         resetColor(BtnContabilidad);
 
+        if (!ventanaClientes.isVisible()) {
+            cerrarFormularios("Clientes");
+            ventanaClientes.setMaximizable(true);
+            if (!dskEscritorio.isAncestorOf(ventanaClientes)) {
+                dskEscritorio.add(ventanaClientes);
+            } else {
+                dskEscritorio.setSelectedFrame(ventanaClientes);
+            }
+            ventanaClientes.show();
+        }
     }//GEN-LAST:event_BtnClientesMousePressed
 
     /**
@@ -610,12 +647,22 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void BtnContabilidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnContabilidadMousePressed
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
-        resetColor(BtnMenus);
+        resetColor(BtnProveedores);
         resetColor(BtnInsumos);
         resetColor(BtnClientes);
-        resetColor(BtnUsuarios);
+        resetColor(BtnEmpleados);
         setColor(BtnContabilidad);
 
+        if (!ventanaContabilidad.isVisible()) {
+            cerrarFormularios("Contabilidad");
+            ventanaContabilidad.setMaximizable(true);
+            if (!dskEscritorio.isAncestorOf(ventanaContabilidad)) {
+                dskEscritorio.add(ventanaContabilidad);
+            } else {
+                dskEscritorio.setSelectedFrame(ventanaContabilidad);
+            }
+            ventanaContabilidad.show();
+        }
     }//GEN-LAST:event_BtnContabilidadMousePressed
 
     /**
@@ -626,28 +673,49 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void BtnInsumosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnInsumosMousePressed
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
-        resetColor(BtnMenus);
+        resetColor(BtnProveedores);
         setColor(BtnInsumos);
         resetColor(BtnClientes);
-        resetColor(BtnUsuarios);
+        resetColor(BtnEmpleados);
         resetColor(BtnContabilidad);
+
+        if (!ventanaInsumos.isVisible()) {
+            cerrarFormularios("Insumos");
+            ventanaInsumos.setMaximizable(true);
+            if (!dskEscritorio.isAncestorOf(ventanaInsumos)) {
+                dskEscritorio.add(ventanaInsumos);
+            } else {
+                dskEscritorio.setSelectedFrame(ventanaInsumos);
+            }
+            ventanaInsumos.show();
+        }
     }//GEN-LAST:event_BtnInsumosMousePressed
 
     /**
-     * Boton que despliega las opcciones de usuario
+     * Boton que despliega las opcciones de empleado
      *
      * @param evt Evento del boton
      */
-    private void BtnUsuariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnUsuariosMousePressed
+    private void BtnEmpleadosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEmpleadosMousePressed
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
-        resetColor(BtnMenus);
+        resetColor(BtnProveedores);
         resetColor(BtnInsumos);
         resetColor(BtnClientes);
-        setColor(BtnUsuarios);
+        setColor(BtnEmpleados);
         resetColor(BtnContabilidad);
 
-    }//GEN-LAST:event_BtnUsuariosMousePressed
+        if (!ventanaEmpleados.isVisible()) {
+            cerrarFormularios("Empleados");
+            ventanaEmpleados.setMaximizable(true);
+            if (!dskEscritorio.isAncestorOf(ventanaEmpleados)) {
+                dskEscritorio.add(ventanaEmpleados);
+            } else {
+                dskEscritorio.setSelectedFrame(ventanaEmpleados);
+            }
+            ventanaEmpleados.show();
+        }
+    }//GEN-LAST:event_BtnEmpleadosMousePressed
 
     /**
      * Metodo encargado de modificar un usuario donde false activa el boton
@@ -721,17 +789,19 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BtnClientes;
     private javax.swing.JPanel BtnContabilidad;
+    private javax.swing.JPanel BtnEmpleados;
     private javax.swing.JPanel BtnHomePage;
     private javax.swing.JPanel BtnInsumos;
-    private javax.swing.JPanel BtnMenus;
     private javax.swing.JPanel BtnProductos;
-    private javax.swing.JPanel BtnUsuarios;
+    private javax.swing.JPanel BtnProveedores;
     private javax.swing.JDesktopPane dskEscritorio;
     private javax.swing.JLabel jLbClientes;
     private javax.swing.JLabel jLbClientesIcon;
     private javax.swing.JLabel jLbClose1;
     private javax.swing.JLabel jLbContabilidad;
     private javax.swing.JLabel jLbContabilidadIcon;
+    private javax.swing.JLabel jLbEmpleados;
+    private javax.swing.JLabel jLbEmpleadosIcon;
     private javax.swing.JLabel jLbHide;
     private javax.swing.JLabel jLbHomePage;
     private javax.swing.JLabel jLbHomePageIcono;
@@ -739,14 +809,12 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLbInsumosIcon;
     private javax.swing.JLabel jLbLogOut;
     private javax.swing.JLabel jLbMaxMin;
-    private javax.swing.JLabel jLbMenus;
-    private javax.swing.JLabel jLbMenusIcon;
     private javax.swing.JLabel jLbProductos;
     private javax.swing.JLabel jLbProductosIcon;
+    private javax.swing.JLabel jLbProveedores;
+    private javax.swing.JLabel jLbProveedoresIcon;
     private javax.swing.JLabel jLbUserName;
     private javax.swing.JLabel jLbUserPhoto;
-    private javax.swing.JLabel jLbUsuarios;
-    private javax.swing.JLabel jLbUsuariosIcon;
     private javax.swing.JPanel jPnlBg;
     private javax.swing.JPanel jPnlCMH;
     private javax.swing.JPanel jPnlSide;
@@ -780,10 +848,10 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private void initIcons() {
         addIcon(jLbHomePageIcono, "src/main/java/resources/home.png");
         addIcon(jLbProductosIcon, "src/main/java/resources/restaurant.png");
-        addIcon(jLbMenusIcon, "src/main/java/resources/restaurantMenu.png");
+        addIcon(jLbProveedoresIcon, "src/main/java/resources/restaurantMenu.png");
         addIcon(jLbInsumosIcon, "src/main/java/resources/foodDishes.png");
         addIcon(jLbClientesIcon, "src/main/java/resources/customers.png");
-        addIcon(jLbUsuariosIcon, "src/main/java/resources/users.png");
+        addIcon(jLbEmpleadosIcon, "src/main/java/resources/users.png");
         addIcon(jLbContabilidadIcon, "src/main/java/resources/accounting.png");
         addIcon(jLbUserPhoto, "src/main/java/resources/userPhoto.png");
     }
@@ -809,5 +877,65 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
      */
     private void cargarLista() {
 
+    }
+
+    /**
+     * Cierra los formularios abiertos deacuerdo al boton
+     *
+     * @param boton Nombre del boton
+     */
+    private void cerrarFormularios(String boton) {
+        switch (boton) {
+            case "Home":
+                this.ventaProductos.setVisible(false);
+                this.ventanaClientes.setVisible(false);
+                this.ventanaContabilidad.setVisible(false);
+                this.ventanaEmpleados.setVisible(false);
+                this.ventanaInsumos.setVisible(false);
+                this.ventanaProveedores.setVisible(false);
+                break;
+            case "Productos":
+                this.ventanaClientes.setVisible(false);
+                this.ventanaContabilidad.setVisible(false);
+                this.ventanaEmpleados.setVisible(false);
+                this.ventanaInsumos.setVisible(false);
+                this.ventanaProveedores.setVisible(false);
+                break;
+            case "Clientes":
+                this.ventaProductos.setVisible(false);
+                this.ventanaContabilidad.setVisible(false);
+                this.ventanaEmpleados.setVisible(false);
+                this.ventanaInsumos.setVisible(false);
+                this.ventanaProveedores.setVisible(false);
+                break;
+            case "Contabilidad":
+                this.ventaProductos.setVisible(false);
+                this.ventanaClientes.setVisible(false);
+                this.ventanaEmpleados.setVisible(false);
+                this.ventanaInsumos.setVisible(false);
+                this.ventanaProveedores.setVisible(false);
+                break;
+            case "Empleados":
+                this.ventaProductos.setVisible(false);
+                this.ventanaClientes.setVisible(false);
+                this.ventanaContabilidad.setVisible(false);
+                this.ventanaInsumos.setVisible(false);
+                this.ventanaProveedores.setVisible(false);
+                break;
+            case "Insumos":
+                this.ventaProductos.setVisible(false);
+                this.ventanaClientes.setVisible(false);
+                this.ventanaContabilidad.setVisible(false);
+                this.ventanaEmpleados.setVisible(false);
+                this.ventanaProveedores.setVisible(false);
+                break;
+            case "Proveedores":
+                this.ventaProductos.setVisible(false);
+                this.ventanaClientes.setVisible(false);
+                this.ventanaContabilidad.setVisible(false);
+                this.ventanaEmpleados.setVisible(false);
+                this.ventanaInsumos.setVisible(false);
+                break;
+        }
     }
 }

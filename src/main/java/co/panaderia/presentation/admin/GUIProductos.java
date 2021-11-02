@@ -122,9 +122,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jBtnEliminar = new javax.swing.JButton();
         jPnSur = new javax.swing.JPanel();
 
-        setClosable(true);
-        setMaximizable(true);
-        setResizable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(752, 532));
 
         jPnlFondo.setBackground(new java.awt.Color(54, 33, 88));
