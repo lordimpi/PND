@@ -5,6 +5,7 @@ co\panaderia\presentation\Main.class
 co\panaderia\access\IMediosPagosRepository.class
 co\panaderia\access\MediosPagosRepository.class
 co\panaderia\presentation\admin\GUIProductos$5.class
+co\panaderia\presentation\admin\GUIProductos$17.class
 co\panaderia\presentation\admin\GUIContabilidad.class
 co\panaderia\presentation\admin\GUIMenuAdmin$4.class
 co\panaderia\presentation\admin\GUIProductos$13.class
@@ -15,6 +16,7 @@ co\panaderia\presentation\admin\GUIProductos$10.class
 co\panaderia\access\ProductoRepository.class
 co\panaderia\domain\entitys\Persona.class
 co\panaderia\presentation\admin\GUIProductos$1.class
+co\panaderia\presentation\admin\GUIProductos$16.class
 co\panaderia\presentation\GUILogin$5.class
 co\panaderia\domain\services\ProductoService.class
 co\panaderia\access\PersonaRepository.class
@@ -60,3 +62,4 @@ co\panaderia\presentation\admin\GUIProductos$14.class
 co\panaderia\domain\entitys\Producto.class
 co\panaderia\domain\services\PersonaService.class
 co\panaderia\presentation\admin\GUIMenuAdmin$11.class
+co\panaderia\infra\RenderImagen.class

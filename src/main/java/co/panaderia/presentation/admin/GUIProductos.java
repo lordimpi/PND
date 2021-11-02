@@ -4,6 +4,7 @@ import co.panaderia.domain.entitys.Producto;
 import co.panaderia.domain.services.ProductoService;
 import co.panaderia.infra.Messages;
 import static co.panaderia.infra.Messages.successMessage;
+import co.panaderia.infra.RenderImagen;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -21,7 +22,9 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -60,8 +63,8 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         this.setTitle("Productos");
         this.setMaximum(true);
         cargarLista();
-        mostrarTabla("Productos");
-        mostrarTabla("Eliminar");
+        mostrarTabla(jTblProductos);
+        mostrarTabla(jTblEliminarProductos);
         jBtnModificar.setVisible(false);
         jBtnCancelar.setVisible(false);
         jBtnCargarImagenModificar.setVisible(false);
@@ -247,20 +250,20 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         };
         jTblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Descripción", "Precio Venta"
+                "Id", "Nombre", "Descripción", "Precio Venta", "Imagen"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -275,8 +278,8 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jTblProductos.setRowHeight(30);
         jTblProductos.getTableHeader().setReorderingAllowed(false);
         jTblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTblProductosMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTblProductosMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTblProductos);
@@ -426,6 +429,11 @@ public class GUIProductos extends javax.swing.JInternalFrame {
 
         jTxfPrecioVentaCrear.setBackground(new java.awt.Color(255, 255, 255));
         jTxfPrecioVentaCrear.setForeground(new java.awt.Color(0, 0, 0));
+        jTxfPrecioVentaCrear.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxfPrecioVentaCrearKeyTyped(evt);
+            }
+        });
         jPanel7.add(jTxfPrecioVentaCrear);
 
         jPnCentro3.add(jPanel7, java.awt.BorderLayout.CENTER);
@@ -577,6 +585,11 @@ public class GUIProductos extends javax.swing.JInternalFrame {
 
         jTxfPrecioVentaMoficar.setBackground(new java.awt.Color(255, 255, 255));
         jTxfPrecioVentaMoficar.setForeground(new java.awt.Color(0, 0, 0));
+        jTxfPrecioVentaMoficar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxfPrecioVentaMoficarKeyTyped(evt);
+            }
+        });
         jPanel12.add(jTxfPrecioVentaMoficar);
 
         jPnCentro2.add(jPanel12, java.awt.BorderLayout.CENTER);
@@ -671,8 +684,8 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jTblEliminarProductos.setRowHeight(30);
         jTblEliminarProductos.getTableHeader().setReorderingAllowed(false);
         jTblEliminarProductos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTblEliminarProductosMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTblEliminarProductosMousePressed(evt);
             }
         });
         jScrollPane3.setViewportView(jTblEliminarProductos);
@@ -729,35 +742,6 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Evento encargado de mostrar la informacion para cada producto de la lista
-     * de productos
-     *
-     * @param evt
-     */
-    private void jTblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblProductosMouseClicked
-
-        int i = jTblProductos.getSelectedRow();
-        TableModel model = jTblProductos.getModel();
-        jLblProductoNombre.setText(model.getValueAt(i, 1).toString());
-        jTxtADescripcion.setText(model.getValueAt(i, 2).toString());
-        jLblProductoPrecioVenta.setText(model.getValueAt(i, 3).toString());
-        addIcon(jLblCargarImg, "src/main/java/resources/ProductoLogo.png");
-    }//GEN-LAST:event_jTblProductosMouseClicked
-
-    /**
-     * Evento encargado de capturar el indice de la fila para la tabla de
-     * eliminar productos
-     *
-     * @param evt Evento del formulario
-     */
-    private void jTblEliminarProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblEliminarProductosMouseClicked
-
-        int i = jTblEliminarProductos.getSelectedRow();
-        TableModel model = jTblEliminarProductos.getModel();
-        this.jTxfID.setText(model.getValueAt(i, 0).toString());
-    }//GEN-LAST:event_jTblEliminarProductosMouseClicked
-
-    /**
      * Medoto encargado de eliminar un producto en la base de datos
      *
      * @param evt
@@ -791,12 +775,15 @@ public class GUIProductos extends javax.swing.JInternalFrame {
                 return;
             }
         } catch (NumberFormatException ex) {
-            successMessage(ex.getMessage(), "Atención");
+            jTxfID.setText("");
+            Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
+            successMessage("Identificador no valido", "Atención");
             EstadoListaProductos = false;
+            return;
         }
         Messages.successMessage("El producto " + id + " fue elimado", "EXITO");
         cargarLista();
-        mostrarTabla("Eliminar");
+        mostrarTabla(jTblEliminarProductos);
     }//GEN-LAST:event_jBtnEliminarActionPerformed
 
     /**
@@ -808,8 +795,8 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     private void jTbPnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbPnProductosMouseClicked
         if (EstadoListaProductos) {
             cargarLista();
-            mostrarTabla("Productos");
-            mostrarTabla("Eliminar");
+            mostrarTabla(jTblProductos);
+            mostrarTabla(jTblEliminarProductos);
             EstadoListaProductos = false;
         }
     }//GEN-LAST:event_jTbPnProductosMouseClicked
@@ -947,12 +934,10 @@ public class GUIProductos extends javax.swing.JInternalFrame {
             clearControls();
             showData(producto);
         } catch (NumberFormatException ex) {
+            jTxfIdProductoModificar.setText("");
             clearControls();
-            successMessage(ex.getMessage(), "Atención");
+            successMessage("Identificador no valido", "Atención");
             return;
-        } catch (IOException ex) {
-            Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
-            successMessage(ex.getMessage(), "Atención");
         }
 
         Ruta = null;
@@ -997,6 +982,82 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         this.seleccionarImagen(jLbImagenCrear);
     }//GEN-LAST:event_jBtnCargarImagenCrearActionPerformed
 
+    private void jTxfPrecioVentaCrearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxfPrecioVentaCrearKeyTyped
+        int key = (int) evt.getKeyChar();
+
+        if (key >= 46 && key <= 57) {
+            if (key == 46) {
+                String dato = jTxfPrecioVentaCrear.getText();
+                for (int i = 0; i < dato.length(); i++) {
+                    if (dato.contains(".")) {
+                        evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+                    }
+                }
+                if (key == 47) {
+                    evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+                    evt.consume();
+                }
+            }
+        } else {
+            evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTxfPrecioVentaCrearKeyTyped
+
+    private void jTxfPrecioVentaMoficarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxfPrecioVentaMoficarKeyTyped
+        int key = (int) evt.getKeyChar();
+
+        if (key >= 46 && key <= 57) {
+            if (key == 46) {
+                String dato = jTxfPrecioVentaMoficar.getText();
+                for (int i = 0; i < dato.length(); i++) {
+                    if (dato.contains(".")) {
+                        evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+                    }
+                }
+                if (key == 47) {
+                    evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+                    evt.consume();
+                }
+            }
+        } else {
+            evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTxfPrecioVentaMoficarKeyTyped
+
+    /**
+     * Evento encargado de capturar el indice de la fila para la tabla de
+     * eliminar productos
+     *
+     * @param evt Evento del formulario
+     */
+    private void jTblEliminarProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblEliminarProductosMousePressed
+        int i = jTblEliminarProductos.getSelectedRow();
+        TableModel model = jTblEliminarProductos.getModel();
+        this.jTxfID.setText(model.getValueAt(i, 0).toString());    }//GEN-LAST:event_jTblEliminarProductosMousePressed
+
+    /**
+     * Evento encargado de mostrar la informacion para cada producto de la lista
+     * de productos
+     *
+     * @param evt
+     */
+    private void jTblProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblProductosMousePressed
+        int i = jTblProductos.getSelectedRow();
+        TableModel model = jTblProductos.getModel();
+        jLblProductoNombre.setText(model.getValueAt(i, 1).toString());
+        jTxtADescripcion.setText(model.getValueAt(i, 2).toString());
+        jLblProductoPrecioVenta.setText(model.getValueAt(i, 3).toString());
+        if (jTblProductos.getValueAt(i, 4) != null) {
+            ProductoService service = new ProductoService();
+            Producto product = service.buscar(Integer.parseInt(model.getValueAt(i, 0).toString()));
+            asignarImagen(product, jLblCargarImg);
+            product = null;
+        } else {
+            addIcon(jLblCargarImg, "src/main/java/resources/ProductoLogo.png");
+        }
+    }//GEN-LAST:event_jTblProductosMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnBuscar;
@@ -1075,25 +1136,51 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     /**
      * Metodo encargado de mostrar los datos en un jtable
      */
-    private void mostrarTabla(String opcion) {
-        String dataTable[][] = new String[productos.size()][5];
+    private void mostrarTabla(JTable table) {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        modeloTabla.addColumn("Id");
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Descripción");
+        modeloTabla.addColumn("Precio Venta");
+        modeloTabla.addColumn("Imagen");
 
+        cargarImagenesEnTabla(modeloTabla, table);
+
+    }
+
+    private void cargarImagenesEnTabla(DefaultTableModel modelo, JTable table) {
+        table.setDefaultRenderer(Object.class, new RenderImagen());
+        Producto product;
+        Object Datos[] = new Object[5];
         for (int i = 0; i < productos.size(); i++) {
-            dataTable[i][0] = Integer.toString(productos.get(i).getId());
-            dataTable[i][1] = productos.get(i).getNombre();
-            dataTable[i][2] = productos.get(i).getDescripcion();
-            dataTable[i][3] = Double.toString(productos.get(i).getPrecioVenta());
-            dataTable[i][4] = null;
+            product = (Producto) productos.get(i);
+            Datos[0] = String.valueOf(product.getId());
+            Datos[1] = product.getNombre();
+            Datos[2] = product.getDescripcion();
+            Datos[3] = String.valueOf(product.getPrecioVenta());
+            if (product.getImagen() != null) {
+                try {
+                    byte[] imagenF = product.getImagen();
+                    BufferedImage bufferedImage = null;
+                    InputStream inputStream = new ByteArrayInputStream(imagenF);
+                    bufferedImage = ImageIO.read(inputStream);
+                    ImageIcon myIcon = new ImageIcon(bufferedImage.getScaledInstance(60, 60, 0));
+                    Datos[4] = new JLabel(myIcon);
+                } catch (IOException ex) {
+                    Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                Datos[4] = null;
+            }
+            modelo.addRow(Datos);
         }
-        switch (opcion) {
-            case "Productos" ->
-                jTblProductos.setModel(new javax.swing.table.DefaultTableModel(
-                        dataTable, new String[]{"Id", "Nombre", "Descripción", "Precio Venta"}));
-            case "Eliminar" ->
-                jTblEliminarProductos.setModel(new javax.swing.table.DefaultTableModel(
-                        dataTable, new String[]{"Id", "Nombre", "Descripción", "Precio Venta", "Imagen"}));
-        }
-
+        table.setModel(modelo);
+        table.setRowHeight(60);
+        table.getColumnModel().getColumn(0).setPreferredWidth(60);
+        table.getColumnModel().getColumn(1).setPreferredWidth(60);
+        table.getColumnModel().getColumn(2).setPreferredWidth(60);
+        table.getColumnModel().getColumn(3).setPreferredWidth(60);
+        table.getColumnModel().getColumn(4).setPreferredWidth(60);
     }
 
     /**
@@ -1129,19 +1216,11 @@ public class GUIProductos extends javax.swing.JInternalFrame {
      *
      * @param mainDish Objeto plato principal
      */
-    private void showData(Producto producto) throws IOException {
+    private void showData(Producto producto) {
         jTxfNombreModificar.setText(producto.getNombre());
         jTxfDescripcionModificar.setText(producto.getDescripcion());
         jTxfPrecioVentaMoficar.setText(Double.toString(producto.getPrecioVenta()));
-        if (producto.getImagen() != null) {
-            imagen = producto.getImagen();
-            BufferedImage bufferedImage = null;
-            InputStream inputStream = new ByteArrayInputStream(imagen);
-            bufferedImage = ImageIO.read(inputStream);
-            ImageIcon myIcon = new ImageIcon(bufferedImage.getScaledInstance(
-                    335, 217, 0));
-            jLbImagenModificar.setIcon(myIcon);
-        }
+        asignarImagen(producto, jLbImagenModificar);
     }
 
     /**
@@ -1199,5 +1278,23 @@ public class GUIProductos extends javax.swing.JInternalFrame {
             successMessage(ex.getMessage(), "Atención");
         }
         return null;
+    }
+
+    private void asignarImagen(Producto producto, JLabel label) {
+        if (producto.getImagen() != null) {
+            try {
+                imagen = producto.getImagen();
+                BufferedImage bufferedImage = null;
+                InputStream inputStream = new ByteArrayInputStream(imagen);
+                bufferedImage = ImageIO.read(inputStream);
+                ImageIcon myIcon = new ImageIcon(bufferedImage.getScaledInstance(
+                        335, 217, 0));
+                label.setIcon(myIcon);
+            } catch (IOException ex) {
+                Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
+                successMessage(ex.toString(), "Atención");
+            }
+
+        }
     }
 }

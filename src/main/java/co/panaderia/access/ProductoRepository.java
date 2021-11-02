@@ -46,7 +46,8 @@ public class ProductoRepository implements IProductoRepository {
                 newProducto.setNombre(rs.getString("pr_nombre"));
                 newProducto.setDescripcion(rs.getString("pr_descripcion"));
                 newProducto.setPrecioVenta(rs.getDouble("pr_precioVenta"));
-
+                newProducto.setImagen(rs.getBytes("pr_imagen"));
+                
                 productos.add(newProducto);
             }
             this.disconnect();

@@ -113,7 +113,7 @@ public class GUILogin extends javax.swing.JFrame {
                     GUIMenuAdmin ins;
                     try {
                         ins = new GUIMenuAdmin();
-                        ins.setExtendedState(MAXIMIZED_BOTH);
+                        ins.setExtendedState(NORMAL);
                         ins.setVisible(true);
                     } catch (PropertyVetoException ex) {
                         Logger.getLogger(GUILogin.class.getName()).log(Level.SEVERE, null, ex);
