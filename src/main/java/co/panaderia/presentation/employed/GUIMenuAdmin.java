@@ -1,19 +1,20 @@
-package co.panaderia.presentation.admin;
+package co.panaderia.presentation.employed;
 
+import co.panaderia.presentation.admin.*;
 import co.panaderia.presentation.GUILogin;
+import static co.panaderia.infra.Messages.successMessage;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.beans.PropertyVetoException;
-import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -38,12 +39,12 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     /**
      * Guarda la instancia del formulario Productos
      */
-    private final GUIProductos ventaProductos;
-    private final GUIClientes ventanaClientes;
-    private final GUIContabilidad ventanaContabilidad;
-    private final GUIEmpleados ventanaEmpleados;
-    private final GUIInsumos ventanaInsumos;
-    private final GUIProveedores ventanaProveedores;
+    private GUIProductos ventaProductos;
+    private GUIClientes ventanaClientes;
+    private GUIContabilidad ventanaContabilidad;
+    private GUIEmpleados ventanaEmpleados;
+    private GUIInsumos ventanaInsumos;
+    private GUIProveedores ventanaProveedores;
 
     /**
      * Constructor que inicializa el formulario Menu admin
@@ -103,22 +104,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         jLbMaxMin = new javax.swing.JLabel();
         jLbHide = new javax.swing.JLabel();
         jLbClose1 = new javax.swing.JLabel();
-        dskEscritorio = new javax.swing.JDesktopPane(){
-            private Image image;
-            {
-                try {
-                    image = ImageIO.read(new File("src/main/java/resources/fondo1.png"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
+        dskEscritorio = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -772,9 +758,19 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GUIMenuAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GUIMenuAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GUIMenuAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GUIMenuAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

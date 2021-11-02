@@ -5,6 +5,8 @@
  */
 package co.panaderia.presentation.admin;
 
+import java.beans.PropertyVetoException;
+
 /**
  *
  * @author Santiago Acuña
@@ -13,9 +15,13 @@ public class GUIProveedores extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form GUIProveedores
+     *
+     * @throws java.beans.PropertyVetoException
      */
-    public GUIProveedores() {
+    public GUIProveedores() throws PropertyVetoException {
         initComponents();
+        this.setTitle("Proveedores");
+        this.setMaximum(true);
     }
 
     /**
@@ -27,9 +33,7 @@ public class GUIProveedores extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-        setMaximizable(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

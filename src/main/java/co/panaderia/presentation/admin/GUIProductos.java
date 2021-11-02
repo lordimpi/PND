@@ -33,6 +33,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
      */
     public GUIProductos() throws PropertyVetoException {
         initComponents();
+        this.setTitle("Productos");
         this.setMaximum(true);
         cargarLista();
         mostrarTabla("Productos");
@@ -740,7 +741,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
                 EstadoListaProductos = false;
                 return;
             }
-        } catch (Exception ex) {
+        } catch (NumberFormatException ex) {
             successMessage(ex.getMessage(), "Atención");
             EstadoListaProductos = false;
         }
