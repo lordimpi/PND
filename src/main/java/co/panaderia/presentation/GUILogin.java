@@ -1,6 +1,5 @@
 package co.panaderia.presentation;
 
-
 import co.panaderia.domain.entitys.Empleado;
 import static co.panaderia.infra.Messages.warningMessage;
 import co.panaderia.infra.Secutiry;
@@ -10,6 +9,7 @@ import co.panaderia.presentation.employed.GUIMenuEmpleados;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;

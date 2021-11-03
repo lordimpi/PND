@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
@@ -860,11 +861,11 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
      */
     private void initIcons() {
         addIcon(jLbHomePageIcono, "src/main/java/resources/home.png");
-        addIcon(jLbProductosIcon, "src/main/java/resources/restaurant.png");
-        addIcon(jLbProveedoresIcon, "src/main/java/resources/restaurantMenu.png");
-        addIcon(jLbInsumosIcon, "src/main/java/resources/foodDishes.png");
+        addIcon(jLbProductosIcon, "src/main/java/resources/products.png");
+        addIcon(jLbProveedoresIcon, "src/main/java/resources/providers.png");
+        addIcon(jLbInsumosIcon, "src/main/java/resources/supplies.png");
         addIcon(jLbClientesIcon, "src/main/java/resources/customers.png");
-        addIcon(jLbEmpleadosIcon, "src/main/java/resources/users.png");
+        addIcon(jLbEmpleadosIcon, "src/main/java/resources/employeds.png");
         addIcon(jLbContabilidadIcon, "src/main/java/resources/accounting.png");
         addIcon(jLbUserPhoto, "src/main/java/resources/userPhoto.png");
     }
@@ -880,7 +881,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         Icon icono = new ImageIcon(img.getImage().getScaledInstance(
                 lb.getWidth(),
                 lb.getHeight(),
-                Image.SCALE_DEFAULT));
+                Image.SCALE_SMOOTH));
         lb.setIcon(icono);
         this.repaint();
     }
