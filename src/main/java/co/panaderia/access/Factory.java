@@ -32,7 +32,8 @@ public class Factory {
     }
 
     /**
-     * Método que crea una instancia concreta de la jerarquia IEmpleadoRepository
+     * Método que crea una instancia concreta de la jerarquia
+     * IEmpleadoRepository
      *
      * @return una clase hija de la abstracción IEmpleadoRepository
      */
@@ -47,6 +48,27 @@ public class Factory {
         }
         if (result == null) {
             result = new EmpleadoRepository();
+        }
+        return result;
+    }
+
+    /**
+     * Método que crea una instancia concreta de la jerarquia
+     * IProduccionRepository
+     *
+     * @return una clase hija de la abstracción IProduccionRepository
+     */
+    public IProduccionRepository getProduccionRepository() {
+        IProduccionRepository result = null;
+
+        try {
+            result = (IProduccionRepository) Class.forName(Utilities.loadProperty("ProduccionRepositoryClass")).getConstructor().newInstance();
+        } catch (ClassNotFoundException | NoSuchMethodException | SecurityException
+                | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            Logger.getLogger(Factory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (result == null) {
+            result = new ProduccionRepository();
         }
         return result;
     }

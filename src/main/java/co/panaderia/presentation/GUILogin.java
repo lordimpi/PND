@@ -9,7 +9,6 @@ import co.panaderia.presentation.employed.GUIMenuEmpleados;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -267,7 +266,8 @@ public class GUILogin extends javax.swing.JFrame {
     private void BtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresarActionPerformed
 
         String email = TxbUser.getText();
-        String password = jPswField.getText();
+        String password;
+        password = String.valueOf(jPswField.getPassword());
         Secutiry sc = new Secutiry();
         //Aqui vendria el analizar si el usuario existe en el sistema
         if (sc.validarEmail(TxbUser.getText())) {

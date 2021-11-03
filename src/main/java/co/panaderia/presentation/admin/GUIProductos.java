@@ -1,6 +1,8 @@
 package co.panaderia.presentation.admin;
 
+import co.panaderia.domain.entitys.Produccion;
 import co.panaderia.domain.entitys.Producto;
+import co.panaderia.domain.services.ProduccionService;
 import co.panaderia.domain.services.ProductoService;
 import co.panaderia.infra.Messages;
 import static co.panaderia.infra.Messages.successMessage;
@@ -39,6 +41,11 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     private List<Producto> productos;
 
     /**
+     * Almacena una lista de produccion
+     */
+    private List<Produccion> producciones;
+
+    /**
      * Guarda un estado para refrescar la lista de productos
      */
     private boolean EstadoListaProductos;
@@ -63,8 +70,10 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         this.setTitle("Productos");
         this.setMaximum(true);
         cargarLista();
-        mostrarTabla(jTblProductos);
-        mostrarTabla(jTblEliminarProductos);
+        cargarListaProduccion();
+        mostrarTabla(jTblProductos, "Id,Nombre,Descripcion,Precio Venta,Imagen");
+        mostrarTabla(jTblEliminarProductos, "Id,Nombre,Descripcion,Precio Venta,Imagen");
+        mostrarTablaProduccion(jTblProduccion, "ID,Fecha Produccion,Nombre,Cantidad,Precio Venta,Imagen");
         jBtnModificar.setVisible(false);
         jBtnCancelar.setVisible(false);
         jBtnCargarImagenModificar.setVisible(false);
@@ -79,8 +88,33 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
         jPnlFondo = new javax.swing.JPanel();
         jTbPnProductos = new javax.swing.JTabbedPane();
+        jPnlProduccion = new javax.swing.JPanel();
+        jPnNorte4 = new javax.swing.JPanel();
+        jLbRestaurantName = new javax.swing.JLabel();
+        jPnSur3 = new javax.swing.JPanel();
+        jBtnCrearProduccion = new javax.swing.JButton();
+        BntModificarProduccion = new javax.swing.JButton();
+        jBtnEliminarProduccion = new javax.swing.JButton();
+        jBtnRecargarTabla = new javax.swing.JButton();
+        jPnCentro4 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTblProduccion = new javax.swing.JTable();
+        jPnlCenDer = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        dPickerFechaProduccion = new com.github.lgooddatepicker.components.DatePicker();
+        jLbID = new javax.swing.JLabel();
+        jTxtFCantProProduccion = new javax.swing.JTextField();
+        jCbxProductos = new javax.swing.JComboBox<>();
+        jLbListaProductos = new javax.swing.JLabel();
+        jLblCantProdProduccion = new javax.swing.JLabel();
+        jTxfIDProduccion = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTxtADesProProduccion = new javax.swing.JTextArea();
+        jLblImgPrProduccion = new javax.swing.JLabel();
         jPnlProductos = new javax.swing.JPanel();
         jPnCentro = new javax.swing.JPanel();
         jPnlCentroNorte = new javax.swing.JPanel();
@@ -162,6 +196,190 @@ public class GUIProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        jPnlProduccion.setLayout(new java.awt.BorderLayout());
+
+        jPnNorte4.setBackground(new java.awt.Color(54, 33, 88));
+        jPnNorte4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPnNorte4.setPreferredSize(new java.awt.Dimension(450, 50));
+
+        jLbRestaurantName.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPnNorte4Layout = new javax.swing.GroupLayout(jPnNorte4);
+        jPnNorte4.setLayout(jPnNorte4Layout);
+        jPnNorte4Layout.setHorizontalGroup(
+            jPnNorte4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnNorte4Layout.createSequentialGroup()
+                .addGap(199, 199, 199)
+                .addComponent(jLbRestaurantName, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(548, Short.MAX_VALUE))
+        );
+        jPnNorte4Layout.setVerticalGroup(
+            jPnNorte4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnNorte4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLbRestaurantName, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
+        );
+
+        jPnlProduccion.add(jPnNorte4, java.awt.BorderLayout.PAGE_START);
+
+        jPnSur3.setBackground(new java.awt.Color(54, 33, 88));
+        jPnSur3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPnSur3.setPreferredSize(new java.awt.Dimension(450, 50));
+
+        jBtnCrearProduccion.setText("Crear");
+        jPnSur3.add(jBtnCrearProduccion);
+
+        BntModificarProduccion.setText("Modificar");
+        BntModificarProduccion.setFocusPainted(false);
+        BntModificarProduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BntModificarProduccionActionPerformed(evt);
+            }
+        });
+        jPnSur3.add(BntModificarProduccion);
+
+        jBtnEliminarProduccion.setText("Eliminar");
+        jPnSur3.add(jBtnEliminarProduccion);
+
+        jBtnRecargarTabla.setText("Recargar");
+        jBtnRecargarTabla.setFocusPainted(false);
+        jBtnRecargarTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRecargarTablaActionPerformed(evt);
+            }
+        });
+        jPnSur3.add(jBtnRecargarTabla);
+
+        jPnlProduccion.add(jPnSur3, java.awt.BorderLayout.PAGE_END);
+
+        jPnCentro4.setLayout(new java.awt.BorderLayout());
+        jPnlProduccion.add(jPnCentro4, java.awt.BorderLayout.LINE_START);
+
+        jTblProduccion = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        jTblProduccion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Fecha Producción", "Nombre", "Cantidad", "Precio Venta", "Imagen"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTblProduccion.setFocusable(false);
+        jTblProduccion.setRowHeight(30);
+        jTblProduccion.getTableHeader().setReorderingAllowed(false);
+        jTblProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTblProduccionMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTblProduccion);
+
+        jPnlProduccion.add(jScrollPane4, java.awt.BorderLayout.CENTER);
+
+        jPnlCenDer.setPreferredSize(new java.awt.Dimension(300, 290));
+        jPnlCenDer.setLayout(new java.awt.BorderLayout());
+
+        jLbID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbID.setText("ID:");
+
+        jTxtFCantProProduccion.setBackground(new java.awt.Color(255, 255, 255));
+        jTxtFCantProProduccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jCbxProductos.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLbListaProductos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbListaProductos.setText("Producto:");
+
+        jLblCantProdProduccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblCantProdProduccion.setText("Cantidad:");
+
+        jTxfIDProduccion.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTxtADesProProduccion.setBackground(new java.awt.Color(255, 255, 255));
+        jTxtADesProProduccion.setColumns(20);
+        jTxtADesProProduccion.setRows(5);
+        jScrollPane5.setViewportView(jTxtADesProProduccion);
+
+        jLblImgPrProduccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLblCantProdProduccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLbID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLbListaProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTxtFCantProProduccion)
+                            .addComponent(jTxfIDProduccion)
+                            .addComponent(jCbxProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane5)
+                    .addComponent(dPickerFechaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLblImgPrProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLbID, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxfIDProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblCantProdProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtFCantProProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLbListaProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jCbxProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dPickerFechaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLblImgPrProduccion, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPnlCenDer.add(jPanel9, java.awt.BorderLayout.CENTER);
+
+        jPnlProduccion.add(jPnlCenDer, java.awt.BorderLayout.LINE_END);
+
+        jTbPnProductos.addTab("Producción", jPnlProduccion);
+
         jPnlProductos.setLayout(new java.awt.BorderLayout());
 
         jPnCentro.setLayout(new java.awt.BorderLayout());
@@ -197,11 +415,11 @@ public class GUIProductos extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLblProductoNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLblProductoNombre.setText("Nombre");
+        jLblProductoNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        jLblProductoPrecioVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLblProductoPrecioVenta.setText("Precio venta");
+        jLblProductoPrecioVenta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         jTxtADescripcion.setEditable(false);
         jTxtADescripcion.setBackground(new java.awt.Color(255, 255, 255));
@@ -783,7 +1001,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         }
         Messages.successMessage("El producto " + id + " fue elimado", "EXITO");
         cargarLista();
-        mostrarTabla(jTblEliminarProductos);
+        mostrarTabla(jTblEliminarProductos, "Id,Nombre,Descripcion,Precio Venta,Imagen");
     }//GEN-LAST:event_jBtnEliminarActionPerformed
 
     /**
@@ -795,8 +1013,10 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     private void jTbPnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbPnProductosMouseClicked
         if (EstadoListaProductos) {
             cargarLista();
-            mostrarTabla(jTblProductos);
-            mostrarTabla(jTblEliminarProductos);
+            cargarListaProduccion();
+            mostrarTabla(jTblProductos, "Id,Nombre,Descripcion,Precio Venta,Imagen");
+            mostrarTabla(jTblEliminarProductos, "Id,Nombre,Descripcion,Precio Venta,Imagen");
+            mostrarTablaProduccion(jTblProduccion, "ID,Fecha Produccion,Nombre,Cantidad,Precio Venta,Imagen");
             EstadoListaProductos = false;
         }
     }//GEN-LAST:event_jTbPnProductosMouseClicked
@@ -1059,30 +1279,61 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTblProductosMousePressed
 
+    private void BntModificarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BntModificarProduccionActionPerformed
+        if (jTxfID.getText().equals("")) {
+            Messages.warningMessage("Campos vacios: Error al modificar producción", "Warning");
+            return;
+        }
+    }//GEN-LAST:event_BntModificarProduccionActionPerformed
+
+    private void jBtnRecargarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRecargarTablaActionPerformed
+
+    }//GEN-LAST:event_jBtnRecargarTablaActionPerformed
+
+    private void jTblProduccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblProduccionMouseClicked
+
+        int i = jTblProduccion.getSelectedRow();
+        TableModel model = jTblProduccion.getModel();
+        this.jTxfID.setText(model.getValueAt(i, 1).toString());
+    }//GEN-LAST:event_jTblProduccionMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BntModificarProduccion;
+    private com.github.lgooddatepicker.components.DatePicker dPickerFechaProduccion;
+    private com.github.lgooddatepicker.components.DatePicker datePicker1;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jBtnBuscar;
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnCargarImagenCrear;
     private javax.swing.JButton jBtnCargarImagenModificar;
     private javax.swing.JButton jBtnCrear;
+    private javax.swing.JButton jBtnCrearProduccion;
     private javax.swing.JButton jBtnEliminar;
+    private javax.swing.JButton jBtnEliminarProduccion;
     private javax.swing.JButton jBtnLimpiar;
     private javax.swing.JButton jBtnModificar;
+    private javax.swing.JButton jBtnRecargarTabla;
+    private javax.swing.JComboBox<String> jCbxProductos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLbDescripcion;
     private javax.swing.JLabel jLbDescripcion1;
+    private javax.swing.JLabel jLbID;
     private javax.swing.JLabel jLbIdProducto;
     private javax.swing.JLabel jLbImagenCrear;
     private javax.swing.JLabel jLbImagenModificar;
+    private javax.swing.JLabel jLbListaProductos;
     private javax.swing.JLabel jLbNombre;
     private javax.swing.JLabel jLbNombre1;
     private javax.swing.JLabel jLbPrecioVenta;
     private javax.swing.JLabel jLbPrecioVenta1;
+    private javax.swing.JLabel jLbRestaurantName;
+    private javax.swing.JLabel jLblCantProdProduccion;
     private javax.swing.JLabel jLblCargarImg;
     private javax.swing.JLabel jLblID;
+    private javax.swing.JLabel jLblImgPrProduccion;
     private javax.swing.JLabel jLblProductoNombre;
     private javax.swing.JLabel jLblProductoPrecioVenta;
     private javax.swing.JPanel jPanel1;
@@ -1097,17 +1348,22 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPnCentro;
     private javax.swing.JPanel jPnCentro1;
     private javax.swing.JPanel jPnCentro2;
     private javax.swing.JPanel jPnCentro3;
+    private javax.swing.JPanel jPnCentro4;
     private javax.swing.JPanel jPnNorte;
     private javax.swing.JPanel jPnNorte1;
     private javax.swing.JPanel jPnNorte2;
     private javax.swing.JPanel jPnNorte3;
+    private javax.swing.JPanel jPnNorte4;
     private javax.swing.JPanel jPnSur;
     private javax.swing.JPanel jPnSur1;
     private javax.swing.JPanel jPnSur2;
+    private javax.swing.JPanel jPnSur3;
+    private javax.swing.JPanel jPnlCenDer;
     private javax.swing.JPanel jPnlCentroNorte;
     private javax.swing.JPanel jPnlCrearProducto;
     private javax.swing.JPanel jPnlEliminarProducto;
@@ -1115,37 +1371,41 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPnlFondoCrear;
     private javax.swing.JPanel jPnlFondoModificar;
     private javax.swing.JPanel jPnlModificarProducto;
+    private javax.swing.JPanel jPnlProduccion;
     private javax.swing.JPanel jPnlProductos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTbPnProductos;
     private javax.swing.JTable jTblEliminarProductos;
+    private javax.swing.JTable jTblProduccion;
     private javax.swing.JTable jTblProductos;
     private javax.swing.JTextField jTxfDescripcionCrear;
     private javax.swing.JTextField jTxfDescripcionModificar;
     private javax.swing.JTextField jTxfID;
+    private javax.swing.JTextField jTxfIDProduccion;
     private javax.swing.JTextField jTxfIdProductoModificar;
     private javax.swing.JTextField jTxfNombreCrear;
     private javax.swing.JTextField jTxfNombreModificar;
     private javax.swing.JTextField jTxfPrecioVentaCrear;
     private javax.swing.JTextField jTxfPrecioVentaMoficar;
+    private javax.swing.JTextArea jTxtADesProProduccion;
     private javax.swing.JTextArea jTxtADescripcion;
+    private javax.swing.JTextField jTxtFCantProProduccion;
     // End of variables declaration//GEN-END:variables
 
     /**
      * Metodo encargado de mostrar los datos en un jtable
      */
-    private void mostrarTabla(JTable table) {
+    private void mostrarTabla(JTable table, String columnas) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        modeloTabla.addColumn("Id");
-        modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Descripción");
-        modeloTabla.addColumn("Precio Venta");
-        modeloTabla.addColumn("Imagen");
-
+        String[] nColumnas = columnas.split(",");
+        for (int i = 0; i < nColumnas.length; i++) {
+            modeloTabla.addColumn(nColumnas[i]);
+        }
         cargarImagenesEnTabla(modeloTabla, table);
-
     }
 
     private void cargarImagenesEnTabla(DefaultTableModel modelo, JTable table) {
@@ -1200,7 +1460,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     }
 
     /**
-     * Carga un lista de la base de datos a travez de un servicio
+     * Carga una lista de la base de datos a travez de un servicio
      */
     private void cargarLista() {
         ProductoService service = new ProductoService();
@@ -1208,6 +1468,17 @@ public class GUIProductos extends javax.swing.JInternalFrame {
             productos = service.list();
         } catch (Exception ex) {
             successMessage(ex.getMessage(), "Atención");
+        }
+    }
+
+    /**
+     * Carga una lista de la base de datos a travez de un servicio
+     */
+    private void cargarListaProduccion() {
+        ProduccionService service = new ProduccionService();
+        try {
+            producciones = service.list();
+        } catch (Exception e) {
         }
     }
 
@@ -1296,5 +1567,51 @@ public class GUIProductos extends javax.swing.JInternalFrame {
             }
 
         }
+    }
+
+    private void mostrarTablaProduccion(JTable table, String columnas) {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        String[] nColumnas = columnas.split(",");
+        for (int i = 0; i < nColumnas.length; i++) {
+            modeloTabla.addColumn(nColumnas[i]);
+        }
+        cargarImagenesEnTablaProduccion(modeloTabla, table);
+    }
+
+    private void cargarImagenesEnTablaProduccion(DefaultTableModel modelo, JTable table) {
+        table.setDefaultRenderer(Object.class, new RenderImagen());
+        Produccion produccion;
+        Object Datos[] = new Object[6];
+        for (int i = 0; i < producciones.size(); i++) {
+            produccion = (Produccion) producciones.get(i);
+            Datos[0] = produccion.getId();
+            Datos[1] = produccion.getFecha();
+            Datos[2] = produccion.getProducto().getNombre();
+            Datos[3] = produccion.getCantidad();
+            Datos[4] = produccion.getProducto().getPrecioVenta();
+            if (produccion.getProducto().getImagen() != null) {
+                try {
+                    byte[] imagenF = produccion.getProducto().getImagen();
+                    BufferedImage bufferedImage = null;
+                    InputStream inputStream = new ByteArrayInputStream(imagenF);
+                    bufferedImage = ImageIO.read(inputStream);
+                    ImageIcon myIcon = new ImageIcon(bufferedImage.getScaledInstance(60, 60, 0));
+                    Datos[5] = new JLabel(myIcon);
+                } catch (IOException ex) {
+                    Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                Datos[5] = null;
+            }
+            modelo.addRow(Datos);
+        }
+        table.setModel(modelo);
+        table.setRowHeight(60);
+        table.getColumnModel().getColumn(0).setPreferredWidth(60);
+        table.getColumnModel().getColumn(1).setPreferredWidth(60);
+        table.getColumnModel().getColumn(2).setPreferredWidth(60);
+        table.getColumnModel().getColumn(3).setPreferredWidth(60);
+        table.getColumnModel().getColumn(4).setPreferredWidth(60);
+        table.getColumnModel().getColumn(5).setPreferredWidth(60);
     }
 }

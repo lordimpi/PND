@@ -4,9 +4,11 @@ C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\entitys\P
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\GUILogin.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\entitys\Empleado.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\admin\GUIEmpleados.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\entitys\Produccion.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\Main.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\admin\GUIContabilidad.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\admin\GUIProveedores.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\IProduccionRepository.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\services\ProductoService.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\EmpleadoRepository.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\IEmpleadoRepository.java
@@ -16,9 +18,11 @@ C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\infra\Utilities.
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\infra\Singleton.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\employed\GUIMenuEmpleados.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\infra\Messages.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\services\ProduccionService.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\infra\RenderImagen.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\infra\Secutiry.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\admin\GUIMenuAdmin.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\ProduccionRepository.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\IProductoRepository.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\entitys\MediosPagos.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\admin\GUIProductos.java
