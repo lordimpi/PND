@@ -1,5 +1,6 @@
 package co.panaderia.presentation.admin;
 
+import co.panaderia.domain.entitys.Empleado;
 import co.panaderia.presentation.GUILogin;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -38,6 +39,9 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     /**
      * Guarda la instancia del formulario Productos
      */
+
+    private static Empleado user;
+
     private final GUIProductos ventaProductos;
     private final GUIClientes ventanaClientes;
     private final GUIContabilidad ventanaContabilidad;
@@ -48,9 +52,11 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     /**
      * Constructor que inicializa el formulario Menu admin
      *
+     * @param user Usuario logeado
      * @throws java.beans.PropertyVetoException
      */
-    public GUIMenuAdmin() throws PropertyVetoException {
+    public GUIMenuAdmin(Empleado user) throws PropertyVetoException {
+        GUIMenuAdmin.user = user;
         this.ventaProductos = new GUIProductos();
         this.ventanaClientes = new GUIClientes();
         this.ventanaContabilidad = new GUIContabilidad();
@@ -58,7 +64,6 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         this.ventanaInsumos = new GUIInsumos();
         this.ventanaProveedores = new GUIProveedores();
         initComponents();
-        cargarLista();
         setLocationRelativeTo(null);
         initIcons();
     }
@@ -780,7 +785,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new GUIMenuAdmin().setVisible(true);
+                    new GUIMenuAdmin(user).setVisible(true);
                 } catch (PropertyVetoException ex) {
                     Logger.getLogger(GUIMenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -822,6 +827,10 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPnlSide;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    public static Empleado getUser() {
+        return user;
+    }
 
     /**
      * Asigna un especifico a un panel
@@ -872,13 +881,6 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
                 Image.SCALE_DEFAULT));
         lb.setIcon(icono);
         this.repaint();
-    }
-
-    /**
-     * Carga un lista a traves de un socket
-     */
-    private void cargarLista() {
-
     }
 
     /**

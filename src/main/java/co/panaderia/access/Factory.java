@@ -32,21 +32,21 @@ public class Factory {
     }
 
     /**
-     * Método que crea una instancia concreta de la jerarquia IPersonaRepository
+     * Método que crea una instancia concreta de la jerarquia IEmpleadoRepository
      *
-     * @return una clase hija de la abstracción IPersonaRepository
+     * @return una clase hija de la abstracción IEmpleadoRepository
      */
-    public IPersonaRepository getPersonaRepository() {
-        IPersonaRepository result = null;
+    public IEmpleadoRepository getPersonaRepository() {
+        IEmpleadoRepository result = null;
 
         try {
-            result = (IPersonaRepository) Class.forName(Utilities.loadProperty("PersonaRepositoryClass")).getConstructor().newInstance();
+            result = (IEmpleadoRepository) Class.forName(Utilities.loadProperty("EmpleadoRepositoryClass")).getConstructor().newInstance();
         } catch (ClassNotFoundException | NoSuchMethodException | SecurityException
                 | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             Logger.getLogger(Factory.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (result == null) {
-            result = new PersonaRepository();
+            result = new EmpleadoRepository();
         }
         return result;
     }
