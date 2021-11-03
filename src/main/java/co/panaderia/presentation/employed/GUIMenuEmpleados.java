@@ -8,8 +8,6 @@ import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.beans.PropertyVetoException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -74,9 +72,9 @@ public class GUIMenuEmpleados extends javax.swing.JFrame {
         BtnMenus = new javax.swing.JPanel();
         jLbMenusIcon = new javax.swing.JLabel();
         jLbMenus = new javax.swing.JLabel();
-        BtnRestaurant = new javax.swing.JPanel();
+        BtnVentas = new javax.swing.JPanel();
         jLbRestaurantIcon = new javax.swing.JLabel();
-        jLbRestaurant = new javax.swing.JLabel();
+        jLbVentas = new javax.swing.JLabel();
         jLbLogOut = new javax.swing.JLabel();
         jLbUserName = new javax.swing.JLabel();
         jLbUserPhoto = new javax.swing.JLabel();
@@ -175,42 +173,42 @@ public class GUIMenuEmpleados extends javax.swing.JFrame {
 
         jPnlSide.add(BtnMenus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, -1, 40));
 
-        BtnRestaurant.setBackground(new java.awt.Color(64, 43, 100));
-        BtnRestaurant.addMouseListener(new java.awt.event.MouseAdapter() {
+        BtnVentas.setBackground(new java.awt.Color(64, 43, 100));
+        BtnVentas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtnRestaurantMousePressed(evt);
+                BtnVentasMousePressed(evt);
             }
         });
 
         jLbRestaurantIcon.setPreferredSize(new java.awt.Dimension(34, 35));
 
-        jLbRestaurant.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLbRestaurant.setForeground(new java.awt.Color(204, 204, 204));
-        jLbRestaurant.setText("Restaurants");
+        jLbVentas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLbVentas.setForeground(new java.awt.Color(204, 204, 204));
+        jLbVentas.setText("Ventas");
 
-        javax.swing.GroupLayout BtnRestaurantLayout = new javax.swing.GroupLayout(BtnRestaurant);
-        BtnRestaurant.setLayout(BtnRestaurantLayout);
-        BtnRestaurantLayout.setHorizontalGroup(
-            BtnRestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnRestaurantLayout.createSequentialGroup()
+        javax.swing.GroupLayout BtnVentasLayout = new javax.swing.GroupLayout(BtnVentas);
+        BtnVentas.setLayout(BtnVentasLayout);
+        BtnVentasLayout.setHorizontalGroup(
+            BtnVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnVentasLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jLbRestaurantIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLbRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLbVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-        BtnRestaurantLayout.setVerticalGroup(
-            BtnRestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnRestaurantLayout.createSequentialGroup()
-                .addGroup(BtnRestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        BtnVentasLayout.setVerticalGroup(
+            BtnVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnVentasLayout.createSequentialGroup()
+                .addGroup(BtnVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLbRestaurantIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(BtnRestaurantLayout.createSequentialGroup()
+                    .addGroup(BtnVentasLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLbRestaurant)))
+                        .addComponent(jLbVentas)))
                 .addGap(21, 21, 21))
         );
 
-        jPnlSide.add(BtnRestaurant, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, -1, 40));
+        jPnlSide.add(BtnVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, -1, 40));
 
         jLbLogOut.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLbLogOut.setForeground(new java.awt.Color(204, 204, 204));
@@ -407,8 +405,9 @@ public class GUIMenuEmpleados extends javax.swing.JFrame {
      */
     private void BtnHomePageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnHomePageMousePressed
         setColor(BtnHomePage);
-        resetColor(BtnRestaurant);
+        resetColor(BtnVentas);
         resetColor(BtnMenus);
+        resetColor(BtnReclamos);
     }//GEN-LAST:event_BtnHomePageMousePressed
 
     /**
@@ -418,8 +417,9 @@ public class GUIMenuEmpleados extends javax.swing.JFrame {
      */
     private void BtnMenusMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnMenusMousePressed
         resetColor(BtnHomePage);
-        resetColor(BtnRestaurant);
+        resetColor(BtnVentas);
         setColor(BtnMenus);
+        resetColor(BtnReclamos);
     }//GEN-LAST:event_BtnMenusMousePressed
 
     /**
@@ -427,11 +427,12 @@ public class GUIMenuEmpleados extends javax.swing.JFrame {
      *
      * @param evt evento del boton
      */
-    private void BtnRestaurantMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnRestaurantMousePressed
+    private void BtnVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnVentasMousePressed
         resetColor(BtnHomePage);
-        setColor(BtnRestaurant);
+        setColor(BtnVentas);
         resetColor(BtnMenus);
-    }//GEN-LAST:event_BtnRestaurantMousePressed
+        resetColor(BtnReclamos);
+    }//GEN-LAST:event_BtnVentasMousePressed
 
     /**
      * Maximiza o minimiza el formulario
@@ -457,7 +458,7 @@ public class GUIMenuEmpleados extends javax.swing.JFrame {
     private void jLbHideMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLbHideMouseClicked
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_jLbHideMouseClicked
-    
+
     /**
      * Boton para cerrar un formulario por completo
      *
@@ -506,6 +507,7 @@ public class GUIMenuEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_jLbUserNameMousePressed
 
     private void jLbLogOutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLbLogOutMousePressed
+        user = null;
         this.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -519,11 +521,16 @@ public class GUIMenuEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnMenus1MousePressed
 
     private void BtnReclamosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnReclamosMousePressed
-        java.awt.EventQueue.invokeLater(new Runnable() {
+
+        resetColor(BtnHomePage);
+        resetColor(BtnVentas);
+        resetColor(BtnMenus);
+        setColor(BtnReclamos);
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new GUIReclamos().setVisible(true);
+                new GUIReclamos().setVisible(true);
             }
-        });
+        });*/
     }//GEN-LAST:event_BtnReclamosMousePressed
 
     /**
@@ -566,7 +573,7 @@ public class GUIMenuEmpleados extends javax.swing.JFrame {
     private javax.swing.JPanel BtnMenus;
     private javax.swing.JPanel BtnMenus1;
     private javax.swing.JPanel BtnReclamos;
-    private javax.swing.JPanel BtnRestaurant;
+    private javax.swing.JPanel BtnVentas;
     private javax.swing.JDesktopPane dskEscritorio;
     private javax.swing.JLabel jLbClose1;
     private javax.swing.JLabel jLbHide;
@@ -580,10 +587,10 @@ public class GUIMenuEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLbMenusIcon1;
     private javax.swing.JLabel jLbMenusIcon2;
     private javax.swing.JLabel jLbReclamos;
-    private javax.swing.JLabel jLbRestaurant;
     private javax.swing.JLabel jLbRestaurantIcon;
     private javax.swing.JLabel jLbUserName;
     private javax.swing.JLabel jLbUserPhoto;
+    private javax.swing.JLabel jLbVentas;
     private javax.swing.JPanel jPnlBg;
     private javax.swing.JPanel jPnlCMH;
     private javax.swing.JPanel jPnlSide;

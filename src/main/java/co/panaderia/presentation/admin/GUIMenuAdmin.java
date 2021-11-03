@@ -56,6 +56,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
      * @throws java.beans.PropertyVetoException
      */
     public GUIMenuAdmin(Empleado user) throws PropertyVetoException {
+        initComponents();
         GUIMenuAdmin.user = user;
         this.ventaProductos = new GUIProductos();
         this.ventanaClientes = new GUIClientes();
@@ -63,7 +64,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         this.ventanaEmpleados = new GUIEmpleados();
         this.ventanaInsumos = new GUIInsumos();
         this.ventanaProveedores = new GUIProveedores();
-        initComponents();
+        jLbUserName.setText(user.getNombre());
         setLocationRelativeTo(null);
         initIcons();
     }
@@ -751,6 +752,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
      * @param evt Evento del boton
      */
     private void jLbLogOutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLbLogOutMousePressed
+        user = null;
         this.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
