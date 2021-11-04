@@ -16,10 +16,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -38,17 +40,17 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     /**
      * Almacena una lista de productos
      */
-    private List<Producto> productos;
+    private List<Producto> productos = new ArrayList<>();
 
     /**
      * Almacena una lista de produccion
      */
-    private List<Produccion> producciones;
+    private List<Produccion> producciones = new ArrayList<>();
 
     /**
-     * Guarda un estado para refrescar la lista de productos
+     * Guarda un estado para refrescar la listas
      */
-    private boolean EstadoListaProductos;
+    private boolean EstadoListas;
 
     /**
      * Guarda la ruta donde se encuenta un archivo
@@ -71,12 +73,14 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         this.setMaximum(true);
         cargarLista();
         cargarListaProduccion();
+        cargarDatosComboBox();
         mostrarTabla(jTblProductos, "Id,Nombre,Descripcion,Precio Venta,Imagen");
         mostrarTabla(jTblEliminarProductos, "Id,Nombre,Descripcion,Precio Venta,Imagen");
         mostrarTablaProduccion(jTblProduccion, "ID,Fecha Produccion,Nombre,Cantidad,Precio Venta,Imagen");
         jBtnModificar.setVisible(false);
         jBtnCancelar.setVisible(false);
         jBtnCargarImagenModificar.setVisible(false);
+        dPkFechaProduccion.getComponentDateTextField().setEditable(false);
     }
 
     /**
@@ -99,13 +103,12 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jBtnCrearProduccion = new javax.swing.JButton();
         BntModificarProduccion = new javax.swing.JButton();
         jBtnEliminarProduccion = new javax.swing.JButton();
-        jBtnRecargarTabla = new javax.swing.JButton();
         jPnCentro4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTblProduccion = new javax.swing.JTable();
         jPnlCenDer = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        dPickerFechaProduccion = new com.github.lgooddatepicker.components.DatePicker();
+        dPkFechaProduccion = new com.github.lgooddatepicker.components.DatePicker();
         jLbID = new javax.swing.JLabel();
         jTxtFCantProProduccion = new javax.swing.JTextField();
         jCbxProductos = new javax.swing.JComboBox<>();
@@ -228,6 +231,11 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jPnSur3.setPreferredSize(new java.awt.Dimension(450, 50));
 
         jBtnCrearProduccion.setText("Crear");
+        jBtnCrearProduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCrearProduccionActionPerformed(evt);
+            }
+        });
         jPnSur3.add(jBtnCrearProduccion);
 
         BntModificarProduccion.setText("Modificar");
@@ -241,15 +249,6 @@ public class GUIProductos extends javax.swing.JInternalFrame {
 
         jBtnEliminarProduccion.setText("Eliminar");
         jPnSur3.add(jBtnEliminarProduccion);
-
-        jBtnRecargarTabla.setText("Recargar");
-        jBtnRecargarTabla.setFocusPainted(false);
-        jBtnRecargarTabla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnRecargarTablaActionPerformed(evt);
-            }
-        });
-        jPnSur3.add(jBtnRecargarTabla);
 
         jPnlProduccion.add(jPnSur3, java.awt.BorderLayout.PAGE_END);
 
@@ -291,8 +290,8 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jTblProduccion.setRowHeight(30);
         jTblProduccion.getTableHeader().setReorderingAllowed(false);
         jTblProduccion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTblProduccionMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTblProduccionMousePressed(evt);
             }
         });
         jScrollPane4.setViewportView(jTblProduccion);
@@ -302,13 +301,29 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jPnlCenDer.setPreferredSize(new java.awt.Dimension(300, 290));
         jPnlCenDer.setLayout(new java.awt.BorderLayout());
 
+        dPkFechaProduccion.setFocusable(false);
+        dPkFechaProduccion.setToolTipText("Seleccionar fecha produccion");
+
         jLbID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbID.setText("ID:");
 
-        jTxtFCantProProduccion.setBackground(new java.awt.Color(255, 255, 255));
         jTxtFCantProProduccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTxtFCantProProduccion.setBackground(new java.awt.Color(255, 255, 255));
+        jTxtFCantProProduccion.setToolTipText("Cantidad de productos");
+        jTxtFCantProProduccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtFCantProProduccionKeyTyped(evt);
+            }
+        });
 
         jCbxProductos.setBackground(new java.awt.Color(255, 255, 255));
+        jCbxProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCbxProductos.setToolTipText("Seleccionar producto");
+        jCbxProductos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCbxProductosItemStateChanged(evt);
+            }
+        });
 
         jLbListaProductos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLbListaProductos.setText("Producto:");
@@ -316,11 +331,21 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jLblCantProdProduccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLblCantProdProduccion.setText("Cantidad:");
 
+        jTxfIDProduccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTxfIDProduccion.setBackground(new java.awt.Color(255, 255, 255));
+        jTxfIDProduccion.setToolTipText("Identificador de produccion");
+        jTxfIDProduccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxfIDProduccionKeyTyped(evt);
+            }
+        });
 
-        jTxtADesProProduccion.setBackground(new java.awt.Color(255, 255, 255));
         jTxtADesProProduccion.setColumns(20);
+        jTxtADesProProduccion.setEditable(false);
+        jTxtADesProProduccion.setLineWrap(true);
         jTxtADesProProduccion.setRows(5);
+        jTxtADesProProduccion.setWrapStyleWord(true);
+        jTxtADesProProduccion.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane5.setViewportView(jTxtADesProProduccion);
 
         jLblImgPrProduccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
@@ -343,7 +368,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
                             .addComponent(jTxfIDProduccion)
                             .addComponent(jCbxProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane5)
-                    .addComponent(dPickerFechaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dPkFechaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
@@ -368,7 +393,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dPickerFechaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dPkFechaProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLblImgPrProduccion, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                 .addContainerGap())
@@ -425,8 +450,10 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jTxtADescripcion.setBackground(new java.awt.Color(255, 255, 255));
         jTxtADescripcion.setColumns(20);
         jTxtADescripcion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jTxtADescripcion.setLineWrap(true);
         jTxtADescripcion.setRows(5);
         jTxtADescripcion.setText("Descripcion");
+        jTxtADescripcion.setWrapStyleWord(true);
         jScrollPane2.setViewportView(jTxtADescripcion);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -984,19 +1011,19 @@ public class GUIProductos extends javax.swing.JInternalFrame {
                 Producto aux2 = service.buscar(Integer.parseInt(id));
                 if (aux2 != null) {
                     Messages.warningMessage("No se pudo borrar el producto", "Warning");
-                    EstadoListaProductos = false;
+                    EstadoListas = false;
                     return;
                 }
-                EstadoListaProductos = true;
+                EstadoListas = true;
             } else {
-                EstadoListaProductos = false;
+                EstadoListas = false;
                 return;
             }
         } catch (NumberFormatException ex) {
             jTxfID.setText("");
             Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
             successMessage("Identificador no valido", "Atención");
-            EstadoListaProductos = false;
+            EstadoListas = false;
             return;
         }
         Messages.successMessage("El producto " + id + " fue elimado", "EXITO");
@@ -1011,13 +1038,14 @@ public class GUIProductos extends javax.swing.JInternalFrame {
      * @param evt
      */
     private void jTbPnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbPnProductosMouseClicked
-        if (EstadoListaProductos) {
+        if (EstadoListas) {
             cargarLista();
             cargarListaProduccion();
+            cargarDatosComboBox();
             mostrarTabla(jTblProductos, "Id,Nombre,Descripcion,Precio Venta,Imagen");
             mostrarTabla(jTblEliminarProductos, "Id,Nombre,Descripcion,Precio Venta,Imagen");
             mostrarTablaProduccion(jTblProduccion, "ID,Fecha Produccion,Nombre,Cantidad,Precio Venta,Imagen");
-            EstadoListaProductos = false;
+            EstadoListas = false;
         }
     }//GEN-LAST:event_jTbPnProductosMouseClicked
 
@@ -1069,7 +1097,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         newProducto = null;
         Ruta = null;
         imagen = null;
-        EstadoListaProductos = true;
+        EstadoListas = true;
     }//GEN-LAST:event_jBtnCrearActionPerformed
 
     /**
@@ -1123,7 +1151,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         this.jBtnCancelar.setVisible(false);
         this.jBtnCargarImagenModificar.setVisible(false);
         this.jTxfIdProductoModificar.setEnabled(true);
-        EstadoListaProductos = true;
+        EstadoListas = true;
     }//GEN-LAST:event_jBtnModificarActionPerformed
 
     /**
@@ -1225,25 +1253,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTxfPrecioVentaCrearKeyTyped
 
     private void jTxfPrecioVentaMoficarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxfPrecioVentaMoficarKeyTyped
-        int key = (int) evt.getKeyChar();
-
-        if (key >= 46 && key <= 57) {
-            if (key == 46) {
-                String dato = jTxfPrecioVentaMoficar.getText();
-                for (int i = 0; i < dato.length(); i++) {
-                    if (dato.contains(".")) {
-                        evt.setKeyChar((char) KeyEvent.VK_CLEAR);
-                    }
-                }
-                if (key == 47) {
-                    evt.setKeyChar((char) KeyEvent.VK_CLEAR);
-                    evt.consume();
-                }
-            }
-        } else {
-            evt.setKeyChar((char) KeyEvent.VK_CLEAR);
-            evt.consume();
-        }
+        this.jTxfPrecioVentaCrearKeyTyped(evt);
     }//GEN-LAST:event_jTxfPrecioVentaMoficarKeyTyped
 
     /**
@@ -1286,20 +1296,72 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_BntModificarProduccionActionPerformed
 
-    private void jBtnRecargarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRecargarTablaActionPerformed
+    private void jBtnCrearProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCrearProduccionActionPerformed
+        ProduccionService service = new ProduccionService();
+        Produccion produccion = new Produccion();
+        String cantidad = jTxtFCantProProduccion.getText();
+        if (dPkFechaProduccion.getDate() == null || cantidad.equals("")) {
+            Messages.warningMessage("Campos cantidad o fecha vacios:\n Error al modificar", "Warning");
+            return;
+        }
+        try {
+            produccion.setCantidad(Integer.parseInt(cantidad));
+            produccion.setFecha(java.sql.Date.valueOf(dPkFechaProduccion.getDate()));
+            produccion.setProducto((Producto) jCbxProductos.getSelectedItem());
+            if (service.crear(produccion)) {
+                successMessage("Produccion creada con éxito.", "Atención");
+            } else {
+                successMessage("La produccion no pudo ser creada.", "Atención");
+            }
+            clearControls();
+        } catch (NumberFormatException ex) {
+            clearControls();
+            Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
+            successMessage(ex.getMessage(), "Atención");
+        }
+        EstadoListas = true;
+        cargarListaProduccion();
+        mostrarTablaProduccion(jTblProduccion, "ID,Fecha Produccion,Nombre,Cantidad,Precio Venta,Imagen");
+    }//GEN-LAST:event_jBtnCrearProduccionActionPerformed
 
-    }//GEN-LAST:event_jBtnRecargarTablaActionPerformed
-
-    private void jTblProduccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblProduccionMouseClicked
-
+    private void jTblProduccionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblProduccionMousePressed
         int i = jTblProduccion.getSelectedRow();
         TableModel model = jTblProduccion.getModel();
-        this.jTxfID.setText(model.getValueAt(i, 1).toString());
-    }//GEN-LAST:event_jTblProduccionMouseClicked
+        this.jTxfIDProduccion.setText(model.getValueAt(i, 0).toString());
+        this.jTxtFCantProProduccion.setText(model.getValueAt(i, 3).toString());
+        this.dPkFechaProduccion.setText(model.getValueAt(i, 1).toString());
+    }//GEN-LAST:event_jTblProduccionMousePressed
+
+    private void jTxfIDProduccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxfIDProduccionKeyTyped
+        this.jTxfPrecioVentaCrearKeyTyped(evt);
+    }//GEN-LAST:event_jTxfIDProduccionKeyTyped
+
+    private void jTxtFCantProProduccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtFCantProProduccionKeyTyped
+        this.jTxfPrecioVentaCrearKeyTyped(evt);
+    }//GEN-LAST:event_jTxtFCantProProduccionKeyTyped
+
+    private void jCbxProductosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbxProductosItemStateChanged
+        Producto producto = (Producto) jCbxProductos.getSelectedItem();
+        jTxtADesProProduccion.setText(producto.getDescripcion());
+        if (producto.getImagen() != null) {
+            try {
+                byte[] imagenF = producto.getImagen();
+                BufferedImage bufferedImage = null;
+                InputStream inputStream = new ByteArrayInputStream(imagenF);
+                bufferedImage = ImageIO.read(inputStream);
+                ImageIcon myIcon = new ImageIcon(bufferedImage.getScaledInstance(269, 135, Image.SCALE_SMOOTH));
+                jLblImgPrProduccion.setIcon(myIcon);
+            } catch (IOException ex) {
+                Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            jLblImgPrProduccion.setIcon(null);
+        }
+    }//GEN-LAST:event_jCbxProductosItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BntModificarProduccion;
-    private com.github.lgooddatepicker.components.DatePicker dPickerFechaProduccion;
+    private com.github.lgooddatepicker.components.DatePicker dPkFechaProduccion;
     private com.github.lgooddatepicker.components.DatePicker datePicker1;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jBtnBuscar;
@@ -1312,7 +1374,6 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBtnEliminarProduccion;
     private javax.swing.JButton jBtnLimpiar;
     private javax.swing.JButton jBtnModificar;
-    private javax.swing.JButton jBtnRecargarTabla;
     private javax.swing.JComboBox<String> jCbxProductos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1505,8 +1566,14 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jTxfNombreCrear.setText("");
         jTxfDescripcionCrear.setText("");
         jTxfPrecioVentaCrear.setText("");
+        jTxtADesProProduccion.setText("");
+        jTxtFCantProProduccion.setText("");
+        jTxfIDProduccion.setText("");
+        dPkFechaProduccion.setText("");
+        jLblImgPrProduccion.setIcon(null);
         jLbImagenModificar.setIcon(null);
         jLbImagenCrear.setIcon(null);
+
     }
 
     /**
@@ -1613,5 +1680,12 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         table.getColumnModel().getColumn(3).setPreferredWidth(60);
         table.getColumnModel().getColumn(4).setPreferredWidth(60);
         table.getColumnModel().getColumn(5).setPreferredWidth(60);
+    }
+
+    /**
+     * Carga los tipos de productos en el jComboBox
+     */
+    private void cargarDatosComboBox() {
+        jCbxProductos.setModel(new DefaultComboBoxModel(productos.toArray()));
     }
 }

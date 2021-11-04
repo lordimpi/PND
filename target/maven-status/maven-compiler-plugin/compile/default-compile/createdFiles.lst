@@ -3,6 +3,7 @@ co\panaderia\domain\services\EmpleadoService.class
 co\panaderia\access\IMediosPagosRepository.class
 co\panaderia\access\MediosPagosRepository.class
 co\panaderia\presentation\employed\GUIMenuEmpleados$14.class
+co\panaderia\presentation\admin\GUIProductos$23.class
 co\panaderia\presentation\GUILogin$6.class
 co\panaderia\presentation\admin\GUIMenuAdmin$4.class
 co\panaderia\presentation\admin\GUIProductos$13.class
@@ -71,12 +72,15 @@ co\panaderia\presentation\GUICrearEmpleado$1.class
 co\panaderia\presentation\employed\GUIMenuEmpleados$7.class
 co\panaderia\presentation\admin\GUIProveedores.class
 co\panaderia\presentation\admin\GUIProductos$21.class
+co\panaderia\presentation\admin\GUIProductos$24.class
 co\panaderia\presentation\employed\GUIMenuEmpleados$12.class
 co\panaderia\presentation\employed\GUIMenuEmpleados$15.class
 co\panaderia\domain\entitys\Empleado.class
 co\panaderia\presentation\admin\GUIMenuAdmin$8.class
 co\panaderia\infra\Utilities.class
+co\panaderia\presentation\admin\GUIVentas.class
 co\panaderia\presentation\admin\GUIInsumos.class
+co\panaderia\presentation\admin\GUIProductos$25.class
 co\panaderia\presentation\admin\GUIProductos$7.class
 co\panaderia\infra\Messages.class
 co\panaderia\access\IEmpleadoRepository.class
@@ -84,7 +88,6 @@ co\panaderia\domain\entitys\MediosPagos.class
 co\panaderia\domain\entitys\Produccion.class
 co\panaderia\access\Factory.class
 co\panaderia\presentation\employed\GUIMenuEmpleados$13.class
-co\panaderia\presentation\admin\GUIClientes.class
 co\panaderia\presentation\employed\GUIMenuEmpleados$9.class
 co\panaderia\presentation\GUIModificarEmpleado$2.class
 co\panaderia\presentation\admin\GUIMenuAdmin$9.class

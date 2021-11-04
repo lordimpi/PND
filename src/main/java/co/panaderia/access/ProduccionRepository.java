@@ -5,7 +5,6 @@ import co.panaderia.domain.entitys.Producto;
 import co.panaderia.infra.Utilities;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +23,23 @@ public class ProduccionRepository implements IProduccionRepository {
 
     @Override
     public boolean create(Produccion newProduccion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String sql = "{CALL AgregarProduccion(?,?,?)}";
+            this.connect();
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setInt(1, newProduccion.getProducto().getId());
+            cstmt.setInt(2, newProduccion.getCantidad());
+            cstmt.setDate(3, newProduccion.getFecha());
+
+            ResultSet rs = cstmt.executeQuery();
+            this.disconnect();
+            return true;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduccionRepository.class.getName()).log(Level.SEVERE, "Error al crear el producto {0}", ex);
+        }
+        return false;
     }
 
     @Override

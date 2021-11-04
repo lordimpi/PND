@@ -1,7 +1,6 @@
 package co.panaderia.domain.entitys;
 
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
 /**
  *

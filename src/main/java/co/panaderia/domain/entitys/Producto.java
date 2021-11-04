@@ -68,9 +68,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto: [Id: " + this.Id
-                + ", Nombre: " + this.Nombre + ", Descripcion: "
-                + this.Descripcion + ", Precio Venta: " + this.PrecioVenta + "]";
+        return this.Nombre;
     }
 
 }

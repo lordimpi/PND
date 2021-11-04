@@ -158,6 +158,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Crear"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCrearProduccionActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="BntModificarProduccion">
                       <Properties>
@@ -172,15 +175,6 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Eliminar"/>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="jBtnRecargarTabla">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Recargar"/>
-                        <Property name="focusPainted" type="boolean" value="false"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnRecargarTablaActionPerformed"/>
-                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -258,7 +252,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTblProduccionMouseClicked"/>
+                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTblProduccionMousePressed"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTblProduccion = new javax.swing.JTable(){&#xa;    public boolean isCellEditable(int rowIndex, int colIndex){&#xa;        return false;&#xa;    }&#xa;};"/>
@@ -307,7 +301,7 @@
                                           </Group>
                                       </Group>
                                       <Component id="jScrollPane5" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="dPickerFechaProduccion" alignment="1" min="-2" pref="223" max="-2" attributes="0"/>
+                                      <Component id="dPkFechaProduccion" alignment="1" min="-2" pref="223" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               </Group>
@@ -339,7 +333,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jScrollPane5" min="-2" pref="71" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="dPickerFechaProduccion" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dPkFechaProduccion" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLblImgPrProduccion" pref="135" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -348,7 +342,11 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="com.github.lgooddatepicker.components.DatePicker" name="dPickerFechaProduccion">
+                        <Component class="com.github.lgooddatepicker.components.DatePicker" name="dPkFechaProduccion">
+                          <Properties>
+                            <Property name="focusable" type="boolean" value="false"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Seleccionar fecha produccion"/>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLbID">
                           <Properties>
@@ -358,21 +356,32 @@
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTxtFCantProProduccion">
                           <Properties>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Cantidad de productos"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtFCantProProduccionKeyTyped"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="jCbxProductos">
                           <Properties>
-                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="0"/>
                             </Property>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Default Cursor"/>
+                            </Property>
+                            <Property name="toolTipText" type="java.lang.String" value="Seleccionar producto"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jCbxProductosItemStateChanged"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -391,10 +400,15 @@
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTxfIDProduccion">
                           <Properties>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
+                            <Property name="toolTipText" type="java.lang.String" value="Identificador de produccion"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxfIDProduccionKeyTyped"/>
+                          </Events>
                         </Component>
                         <Container class="javax.swing.JScrollPane" name="jScrollPane5">
                           <AuxValues>
@@ -406,7 +420,10 @@
                             <Component class="javax.swing.JTextArea" name="jTxtADesProProduccion">
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="lineWrap" type="boolean" value="true"/>
                                 <Property name="rows" type="int" value="5"/>
+                                <Property name="wrapStyleWord" type="boolean" value="true"/>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
@@ -597,8 +614,10 @@
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Segoe UI" size="18" style="1"/>
                                     </Property>
+                                    <Property name="lineWrap" type="boolean" value="true"/>
                                     <Property name="rows" type="int" value="5"/>
                                     <Property name="text" type="java.lang.String" value="Descripcion"/>
+                                    <Property name="wrapStyleWord" type="boolean" value="true"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>

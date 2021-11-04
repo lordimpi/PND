@@ -44,7 +44,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private static Empleado user;
 
     private final GUIProductos ventaProductos;
-    private final GUIClientes ventanaClientes;
+    private final GUIVentas ventanaClientes;
     private final GUIContabilidad ventanaContabilidad;
     private final GUIEmpleados ventanaEmpleados;
     private final GUIInsumos ventanaInsumos;
@@ -60,7 +60,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         initComponents();
         GUIMenuAdmin.user = user;
         this.ventaProductos = new GUIProductos();
-        this.ventanaClientes = new GUIClientes();
+        this.ventanaClientes = new GUIVentas();
         this.ventanaContabilidad = new GUIContabilidad();
         this.ventanaEmpleados = new GUIEmpleados();
         this.ventanaInsumos = new GUIInsumos();
@@ -99,8 +99,8 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         BtnEmpleados = new javax.swing.JPanel();
         jLbEmpleadosIcon = new javax.swing.JLabel();
         jLbEmpleados = new javax.swing.JLabel();
-        BtnClientes = new javax.swing.JPanel();
-        jLbClientesIcon = new javax.swing.JLabel();
+        BtnVentas = new javax.swing.JPanel();
+        jLbVentas = new javax.swing.JLabel();
         jLbClientes = new javax.swing.JLabel();
         jLbLogOut = new javax.swing.JLabel();
         jLbUserName = new javax.swing.JLabel();
@@ -359,42 +359,42 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
 
         jPnlSide.add(BtnEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, -1, 40));
 
-        BtnClientes.setBackground(new java.awt.Color(64, 43, 100));
-        BtnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        BtnVentas.setBackground(new java.awt.Color(64, 43, 100));
+        BtnVentas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                BtnClientesMousePressed(evt);
+                BtnVentasMousePressed(evt);
             }
         });
 
-        jLbClientesIcon.setPreferredSize(new java.awt.Dimension(34, 35));
+        jLbVentas.setPreferredSize(new java.awt.Dimension(34, 35));
 
         jLbClientes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLbClientes.setForeground(new java.awt.Color(204, 204, 204));
-        jLbClientes.setText("Clientes");
+        jLbClientes.setText("Ventas");
 
-        javax.swing.GroupLayout BtnClientesLayout = new javax.swing.GroupLayout(BtnClientes);
-        BtnClientes.setLayout(BtnClientesLayout);
-        BtnClientesLayout.setHorizontalGroup(
-            BtnClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnClientesLayout.createSequentialGroup()
+        javax.swing.GroupLayout BtnVentasLayout = new javax.swing.GroupLayout(BtnVentas);
+        BtnVentas.setLayout(BtnVentasLayout);
+        BtnVentasLayout.setHorizontalGroup(
+            BtnVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnVentasLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLbClientesIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLbVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-        BtnClientesLayout.setVerticalGroup(
-            BtnClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BtnClientesLayout.createSequentialGroup()
-                .addGroup(BtnClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLbClientesIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(BtnClientesLayout.createSequentialGroup()
+        BtnVentasLayout.setVerticalGroup(
+            BtnVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BtnVentasLayout.createSequentialGroup()
+                .addGroup(BtnVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLbVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BtnVentasLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLbClientes)))
                 .addGap(21, 21, 21))
         );
 
-        jPnlSide.add(BtnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, -1, 40));
+        jPnlSide.add(BtnVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, -1, 40));
 
         jLbLogOut.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLbLogOut.setForeground(new java.awt.Color(204, 204, 204));
@@ -576,7 +576,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         resetColor(BtnProductos);
         resetColor(BtnProveedores);
         resetColor(BtnInsumos);
-        resetColor(BtnClientes);
+        resetColor(BtnVentas);
         resetColor(BtnEmpleados);
         resetColor(BtnContabilidad);
 
@@ -593,7 +593,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         setColor(BtnProductos);
         resetColor(BtnProveedores);
         resetColor(BtnInsumos);
-        resetColor(BtnClientes);
+        resetColor(BtnVentas);
         resetColor(BtnEmpleados);
         resetColor(BtnContabilidad);
 
@@ -619,7 +619,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         resetColor(BtnProductos);
         setColor(BtnProveedores);
         resetColor(BtnInsumos);
-        resetColor(BtnClientes);
+        resetColor(BtnVentas);
         resetColor(BtnEmpleados);
         resetColor(BtnContabilidad);
 
@@ -639,12 +639,12 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
      *
      * @param evt Evento del boton
      */
-    private void BtnClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnClientesMousePressed
+    private void BtnVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnVentasMousePressed
         resetColor(BtnHomePage);
         resetColor(BtnProductos);
         resetColor(BtnProveedores);
         resetColor(BtnInsumos);
-        setColor(BtnClientes);
+        setColor(BtnVentas);
         resetColor(BtnEmpleados);
         resetColor(BtnContabilidad);
 
@@ -657,7 +657,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
             }
             ventanaClientes.show();
         }
-    }//GEN-LAST:event_BtnClientesMousePressed
+    }//GEN-LAST:event_BtnVentasMousePressed
 
     /**
      * Boton que despliega las opciones para contabilidad
@@ -669,7 +669,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         resetColor(BtnProductos);
         resetColor(BtnProveedores);
         resetColor(BtnInsumos);
-        resetColor(BtnClientes);
+        resetColor(BtnVentas);
         resetColor(BtnEmpleados);
         setColor(BtnContabilidad);
 
@@ -694,7 +694,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         resetColor(BtnProductos);
         resetColor(BtnProveedores);
         setColor(BtnInsumos);
-        resetColor(BtnClientes);
+        resetColor(BtnVentas);
         resetColor(BtnEmpleados);
         resetColor(BtnContabilidad);
 
@@ -719,7 +719,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         resetColor(BtnProductos);
         resetColor(BtnProveedores);
         resetColor(BtnInsumos);
-        resetColor(BtnClientes);
+        resetColor(BtnVentas);
         setColor(BtnEmpleados);
         resetColor(BtnContabilidad);
 
@@ -797,16 +797,15 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BtnClientes;
     private javax.swing.JPanel BtnContabilidad;
     private javax.swing.JPanel BtnEmpleados;
     private javax.swing.JPanel BtnHomePage;
     private javax.swing.JPanel BtnInsumos;
     private javax.swing.JPanel BtnProductos;
     private javax.swing.JPanel BtnProveedores;
+    private javax.swing.JPanel BtnVentas;
     private javax.swing.JDesktopPane dskEscritorio;
     private javax.swing.JLabel jLbClientes;
-    private javax.swing.JLabel jLbClientesIcon;
     private javax.swing.JLabel jLbClose1;
     private javax.swing.JLabel jLbContabilidad;
     private javax.swing.JLabel jLbContabilidadIcon;
@@ -825,6 +824,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLbProveedoresIcon;
     private javax.swing.JLabel jLbUserName;
     private javax.swing.JLabel jLbUserPhoto;
+    private javax.swing.JLabel jLbVentas;
     private javax.swing.JPanel jPnlBg;
     private javax.swing.JPanel jPnlCMH;
     private javax.swing.JPanel jPnlSide;
@@ -864,7 +864,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         addIcon(jLbProductosIcon, "src/main/java/resources/products.png");
         addIcon(jLbProveedoresIcon, "src/main/java/resources/providers.png");
         addIcon(jLbInsumosIcon, "src/main/java/resources/supplies.png");
-        addIcon(jLbClientesIcon, "src/main/java/resources/customers.png");
+        addIcon(jLbVentas, "src/main/java/resources/customers.png");
         addIcon(jLbEmpleadosIcon, "src/main/java/resources/employeds.png");
         addIcon(jLbContabilidadIcon, "src/main/java/resources/accounting.png");
         addIcon(jLbUserPhoto, "src/main/java/resources/userPhoto.png");
