@@ -864,7 +864,7 @@ public class GUIMenuAdmin extends javax.swing.JFrame {
         addIcon(jLbProductosIcon, "src/main/java/resources/products.png");
         addIcon(jLbProveedoresIcon, "src/main/java/resources/providers.png");
         addIcon(jLbInsumosIcon, "src/main/java/resources/supplies.png");
-        addIcon(jLbVentas, "src/main/java/resources/customers.png");
+        addIcon(jLbVentas, "src/main/java/resources/ventas.png");
         addIcon(jLbEmpleadosIcon, "src/main/java/resources/employeds.png");
         addIcon(jLbContabilidadIcon, "src/main/java/resources/accounting.png");
         addIcon(jLbUserPhoto, "src/main/java/resources/userPhoto.png");
