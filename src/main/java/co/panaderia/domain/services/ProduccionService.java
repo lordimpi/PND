@@ -24,7 +24,7 @@ public class ProduccionService {
      * @return Instancia de la produccion
      */
     public Produccion buscar(int id) {
-        return repository.find(id);
+        return repository.buscar(id);
     }
 
     /**
@@ -49,17 +49,13 @@ public class ProduccionService {
     }
 
     /**
-     * Servicio encargado de actualizar un producto de la base de datos
+     * Servicio encargado de modifcar una produccion de la base de datos
      *
      * @param produccion Produccion a modificar
      * @return True si puedo actualizar, false de lo contrario
      */
     public boolean actualizar(Produccion produccion) {
-        Produccion prod = this.buscar(produccion.getId());
-        if (prod != null) {
-            return repository.update(produccion);
-        }
-        return false;
+        return repository.update(produccion);
     }
 
     public boolean eliminar(int id) {

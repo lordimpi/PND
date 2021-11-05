@@ -101,7 +101,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         jLbRestaurantName = new javax.swing.JLabel();
         jPnSur3 = new javax.swing.JPanel();
         jBtnCrearProduccion = new javax.swing.JButton();
-        BntModificarProduccion = new javax.swing.JButton();
+        jBtnModificarProduccion = new javax.swing.JButton();
         jBtnEliminarProduccion = new javax.swing.JButton();
         jPnCentro4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -238,16 +238,20 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         });
         jPnSur3.add(jBtnCrearProduccion);
 
-        BntModificarProduccion.setText("Modificar");
-        BntModificarProduccion.setFocusPainted(false);
-        BntModificarProduccion.addActionListener(new java.awt.event.ActionListener() {
+        jBtnModificarProduccion.setText("Modificar");
+        jBtnModificarProduccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BntModificarProduccionActionPerformed(evt);
+                jBtnModificarProduccionActionPerformed(evt);
             }
         });
-        jPnSur3.add(BntModificarProduccion);
+        jPnSur3.add(jBtnModificarProduccion);
 
         jBtnEliminarProduccion.setText("Eliminar");
+        jBtnEliminarProduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarProduccionActionPerformed(evt);
+            }
+        });
         jPnSur3.add(jBtnEliminarProduccion);
 
         jPnlProduccion.add(jPnSur3, java.awt.BorderLayout.PAGE_END);
@@ -1156,7 +1160,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
 
     /**
      * Metodo encargado de buscar en la base de datos un identificador de un
-     * plato
+     * producto
      *
      * @param evt Accion evento del formulario, en este caso accion buscar
      */
@@ -1289,13 +1293,6 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTblProductosMousePressed
 
-    private void BntModificarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BntModificarProduccionActionPerformed
-        if (jTxfID.getText().equals("")) {
-            Messages.warningMessage("Campos vacios: Error al modificar producción", "Warning");
-            return;
-        }
-    }//GEN-LAST:event_BntModificarProduccionActionPerformed
-
     private void jBtnCrearProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCrearProduccionActionPerformed
         ProduccionService service = new ProduccionService();
         Produccion produccion = new Produccion();
@@ -1359,8 +1356,70 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jCbxProductosItemStateChanged
 
+    private void jBtnEliminarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarProduccionActionPerformed
+        String idProduccion = jTxfIDProduccion.getText();
+        if (idProduccion.equals("")) {
+            Messages.warningMessage("Debe ingresar un ID para poder borrar un registro", "Warning");
+            return;
+        }
+        int confirmacion = Messages.confirmMessage("¿ Desea borrar el registro ?", "Confirm");
+        ProduccionService service = new ProduccionService();
+        try {
+            if (confirmacion < 1 && confirmacion > -1) {
+                boolean aux = service.eliminar(Integer.parseInt(idProduccion));
+                Produccion aux2 = service.buscar(Integer.parseInt(idProduccion));
+                if (aux2 != null) {
+                    Messages.warningMessage("No se pudo borrar la produccion", "Warning");
+                    EstadoListas = false;
+                    return;
+                }
+                EstadoListas = true;
+            } else {
+                EstadoListas = false;
+                return;
+            }
+        } catch (NumberFormatException ex) {
+            jTxfIDProduccion.setText("");
+            Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
+            successMessage("Identificador no valido", "Atención");
+            EstadoListas = false;
+            return;
+        }
+        Messages.successMessage("La produccion " + idProduccion + " fue elimada", "EXITO");
+        cargarListaProduccion();
+        clearControls();
+        mostrarTablaProduccion(jTblProduccion, "ID,Fecha Produccion,Nombre,Cantidad,Precio Venta,Imagen");
+    }//GEN-LAST:event_jBtnEliminarProduccionActionPerformed
+
+    private void jBtnModificarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnModificarProduccionActionPerformed
+        if (jTxfIDProduccion.getText().equals("") || dPkFechaProduccion.getDate() == null
+                || jTxtFCantProProduccion.getText().equals("")) {
+            Messages.warningMessage("Campos Id, Cantidad o Fecha estan vacios:\nError al modificar producción", "Warning");
+            return;
+        }
+        ProduccionService service = new ProduccionService();
+        Produccion produccion = new Produccion();
+        try {
+            produccion.setId(Integer.parseInt(jTxfIDProduccion.getText()));
+            produccion.setCantidad(Integer.parseInt(jTxtFCantProProduccion.getText()));
+            produccion.setFecha(java.sql.Date.valueOf(dPkFechaProduccion.getDate()));
+            produccion.setProducto((Producto) jCbxProductos.getSelectedItem());
+            if (service.actualizar(produccion)) {
+                successMessage("Produccion modificada con éxito.", "Atención");
+            } else {
+                successMessage("La produccion no pudo ser modificada.", "Atención");
+            }
+            clearControls();
+        } catch (NumberFormatException ex) {
+            clearControls();
+            Logger.getLogger(GUIProductos.class.getName()).log(Level.SEVERE, null, ex);
+            successMessage(ex.getMessage(), "Atención");
+        }
+        cargarListaProduccion();
+        mostrarTablaProduccion(jTblProduccion, "ID,Fecha Produccion,Nombre,Cantidad,Precio Venta,Imagen");
+    }//GEN-LAST:event_jBtnModificarProduccionActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BntModificarProduccion;
     private com.github.lgooddatepicker.components.DatePicker dPkFechaProduccion;
     private com.github.lgooddatepicker.components.DatePicker datePicker1;
     private javax.swing.Box.Filler filler1;
@@ -1374,6 +1433,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBtnEliminarProduccion;
     private javax.swing.JButton jBtnLimpiar;
     private javax.swing.JButton jBtnModificar;
+    private javax.swing.JButton jBtnModificarProduccion;
     private javax.swing.JComboBox<String> jCbxProductos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

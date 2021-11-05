@@ -35,7 +35,7 @@ public class ProduccionRepository implements IProduccionRepository {
             ResultSet rs = cstmt.executeQuery();
             this.disconnect();
             return true;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ProduccionRepository.class.getName()).log(Level.SEVERE, "Error al crear el producto {0}", ex);
         }
@@ -43,13 +43,49 @@ public class ProduccionRepository implements IProduccionRepository {
     }
 
     @Override
-    public Produccion find(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Produccion buscar(int id) {
+        Produccion produccion = null;
+        try {
+            String sql = "{CALL BuscarProduccion(?)}";
+            this.connect();
+            CallableStatement cstmt = conn.prepareCall(sql);
+            cstmt.setInt(1, id);
+            ResultSet rs = cstmt.executeQuery();
+
+            if (rs.next()) {
+                produccion = new Produccion();
+                produccion.setId(rs.getInt("prod_id"));
+                produccion.setCantidad(rs.getInt("prod_cantidad"));
+                produccion.setFecha(rs.getDate("prod_fecha"));
+                produccion.getProducto().setId(rs.getInt("pr_id"));
+            }
+            this.disconnect();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduccionRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return produccion;
     }
 
     @Override
     public boolean update(Produccion produccion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String sql = "{CALL ModificarProduccion(?,?,?,?)}";
+            this.connect();
+            CallableStatement cstmt = conn.prepareCall(sql);
+
+            cstmt.setInt(1, produccion.getId());
+            cstmt.setInt(2, produccion.getCantidad());
+            cstmt.setDate(3, produccion.getFecha());
+            cstmt.setInt(4, produccion.getProducto().getId());
+
+            cstmt.executeQuery();
+            this.disconnect();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduccionRepository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
@@ -83,7 +119,18 @@ public class ProduccionRepository implements IProduccionRepository {
 
     @Override
     public boolean delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String sql = "{CALL EliminarProduccion(?)}";
+            this.connect();
+            CallableStatement cstmt = conn.prepareCall(sql);
+            cstmt.setInt(1, id);
+            cstmt.executeQuery();
+            this.disconnect();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduccionRepository.class.getName()).log(Level.SEVERE, "Error al eliminar la produccion", ex);
+        }
+        return false;
     }
 
     /**
@@ -101,7 +148,7 @@ public class ProduccionRepository implements IProduccionRepository {
             conn = DriverManager.getConnection(url, username, pwd);
             return 1;
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(ProduccionRepository.class.getName()).log(Level.SEVERE, "Error al consultar Productos de la base de datos", ex);
+            Logger.getLogger(ProduccionRepository.class.getName()).log(Level.SEVERE, "Error al consultar la Produccion en la base de datos", ex);
         }
         return -1;
     }

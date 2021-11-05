@@ -96,6 +96,7 @@ co\panaderia\presentation\employed\GUIMenuEmpleados$1.class
 co\panaderia\domain\services\ProduccionService.class
 co\panaderia\presentation\admin\GUIMenuAdmin$15.class
 co\panaderia\presentation\admin\GUIProductos$15.class
+co\panaderia\presentation\admin\GUIProductos$26.class
 co\panaderia\presentation\admin\GUIProductos$6.class
 co\panaderia\domain\services\MediosPagosService.class
 co\panaderia\presentation\employed\GUIMenuEmpleados$8.class

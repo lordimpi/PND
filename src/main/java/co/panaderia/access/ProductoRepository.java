@@ -69,9 +69,8 @@ public class ProductoRepository implements IProductoRepository {
     public Producto buscar(int id) {
         Producto producto = null;
         try {
-
-            String sql = "{CALL BuscarProducto(?)}";
             this.connect();
+            String sql = "{CALL BuscarProducto(?)}";
             CallableStatement stmt = conn.prepareCall(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();

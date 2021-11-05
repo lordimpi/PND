@@ -162,19 +162,21 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCrearProduccionActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="BntModificarProduccion">
+                    <Component class="javax.swing.JButton" name="jBtnModificarProduccion">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Modificar"/>
-                        <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BntModificarProduccionActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnModificarProduccionActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jBtnEliminarProduccion">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Eliminar"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnEliminarProduccionActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

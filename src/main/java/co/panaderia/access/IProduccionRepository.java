@@ -12,7 +12,7 @@ public interface IProduccionRepository {
 
     public boolean create(Produccion newProduccion);
 
-    public Produccion find(int id);
+    public Produccion buscar(int id);
 
     public boolean update(Produccion produccion);
 
