@@ -6,6 +6,7 @@ co\panaderia\presentation\employed\GUIMenuEmpleados$14.class
 co\panaderia\presentation\admin\GUIProductos$23.class
 co\panaderia\presentation\GUILogin$6.class
 co\panaderia\presentation\admin\GUIMenuAdmin$4.class
+co\panaderia\domain\entitys\VentaDetalle.class
 co\panaderia\presentation\admin\GUIProductos$13.class
 co\panaderia\presentation\employed\GUIMenuEmpleados$3.class
 co\panaderia\presentation\GUILogin$3.class
@@ -39,12 +40,15 @@ co\panaderia\presentation\employed\GUIMenuEmpleados$10.class
 co\panaderia\access\IProduccionRepository.class
 co\panaderia\presentation\admin\GUIMenuAdmin$18.class
 co\panaderia\presentation\GUILogin$7.class
+co\panaderia\presentation\admin\GUIVentas$1.class
 co\panaderia\presentation\GUICrearEmpleado$2.class
+co\panaderia\domain\entitys\Venta.class
 co\panaderia\presentation\admin\GUIProductos$9.class
 co\panaderia\presentation\admin\GUIProductos.class
 co\panaderia\presentation\admin\GUIMenuAdmin.class
 co\panaderia\presentation\admin\GUIProductos$11.class
 co\panaderia\presentation\GUILogin.class
+co\panaderia\infra\RenderButton.class
 co\panaderia\access\ProduccionRepository.class
 co\panaderia\presentation\admin\GUIMenuAdmin$11.class
 co\panaderia\presentation\GUILogin$10.class
@@ -66,6 +70,7 @@ co\panaderia\access\EmpleadoRepository.class
 co\panaderia\presentation\employed\GUIMenuEmpleados$4.class
 co\panaderia\presentation\admin\GUIMenuAdmin$2.class
 co\panaderia\presentation\GUILogin$2.class
+co\panaderia\presentation\admin\GUIVentas$2.class
 co\panaderia\access\IProductoRepository.class
 co\panaderia\presentation\admin\GUIMenuAdmin$5.class
 co\panaderia\presentation\GUICrearEmpleado$1.class

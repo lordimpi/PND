@@ -10,8 +10,10 @@ C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\adm
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\admin\GUIProveedores.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\IProduccionRepository.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\services\ProductoService.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\infra\RenderButton.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\EmpleadoRepository.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\IEmpleadoRepository.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\entitys\VentaDetalle.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\admin\GUIInsumos.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\Factory.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\infra\Utilities.java
@@ -27,6 +29,7 @@ C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\IProducto
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\entitys\MediosPagos.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\admin\GUIProductos.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\MediosPagosRepository.java
+C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\domain\entitys\Venta.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\access\ProductoRepository.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\admin\GUIVentas.java
 C:\Users\snt-2\Desktop\PND\Panaderia\src\main\java\co\panaderia\presentation\GUICrearEmpleado.java

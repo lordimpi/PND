@@ -1,17 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.panaderia.presentation.admin;
 
+import co.panaderia.domain.entitys.Venta;
+import co.panaderia.infra.RenderButton;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Santiago Acuña
  */
 public class GUIVentas extends javax.swing.JInternalFrame {
+
+    private List<Venta> Ventas = new ArrayList<>();
 
     /**
      * Creates new form GUIClientes
@@ -20,8 +24,9 @@ public class GUIVentas extends javax.swing.JInternalFrame {
      */
     public GUIVentas() throws PropertyVetoException {
         initComponents();
-        this.setTitle("Clientes");
+        this.setTitle("Ventas");
         this.setMaximum(true);
+        this.mostrarTabla(jTblListarVentas, "ID Venta,ID Cliente,Fecha,Id Forma de pago, ID Factura,Detalle,Modificar,Eliminar");
     }
 
     /**
@@ -33,23 +38,193 @@ public class GUIVentas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        jPnlFondo = new javax.swing.JPanel();
+        jTbPaneVentas = new javax.swing.JTabbedPane();
+        jPnlVentas = new javax.swing.JPanel();
+        jPnCentro1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTblListarVentas = new javax.swing.JTable();
+        jPnNorte1 = new javax.swing.JPanel();
+        jBtnCrearVenta = new javax.swing.JButton();
+        jLblIDVenta = new javax.swing.JLabel();
+        jTxfIDVenta = new javax.swing.JTextField();
+        jBtnBuscarVenta = new javax.swing.JButton();
+        jPnSur = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setTitle("Ventas");
+
+        jPnlFondo.setLayout(new java.awt.BorderLayout());
+
+        jPnlVentas.setLayout(new java.awt.BorderLayout());
+
+        jPnCentro1.setLayout(new java.awt.BorderLayout());
+
+        jTblListarVentas = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        jTblListarVentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID Venta", "ID Cliente", "Fecha", "ID Forma de pago", "ID Factura", "Detalle", "Modificar", "Eliminar"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTblListarVentas.setFocusable(false);
+        jTblListarVentas.setRowHeight(30);
+        jTblListarVentas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jTblListarVentas);
+
+        jPnCentro1.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        jPnlVentas.add(jPnCentro1, java.awt.BorderLayout.CENTER);
+
+        jPnNorte1.setBackground(new java.awt.Color(54, 33, 88));
+        jPnNorte1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPnNorte1.setPreferredSize(new java.awt.Dimension(450, 50));
+
+        jBtnCrearVenta.setText("Crear Venta");
+
+        jLblIDVenta.setForeground(new java.awt.Color(255, 255, 255));
+        jLblIDVenta.setText("ID");
+
+        jTxfIDVenta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTxfIDVenta.setMinimumSize(new java.awt.Dimension(100, 24));
+        jTxfIDVenta.setPreferredSize(new java.awt.Dimension(200, 24));
+
+        jBtnBuscarVenta.setText("Buscar");
+        jBtnBuscarVenta.setFocusPainted(false);
+
+        javax.swing.GroupLayout jPnNorte1Layout = new javax.swing.GroupLayout(jPnNorte1);
+        jPnNorte1.setLayout(jPnNorte1Layout);
+        jPnNorte1Layout.setHorizontalGroup(
+            jPnNorte1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnNorte1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jBtnCrearVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 513, Short.MAX_VALUE)
+                .addComponent(jLblIDVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxfIDVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnBuscarVenta)
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+        jPnNorte1Layout.setVerticalGroup(
+            jPnNorte1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnNorte1Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPnNorte1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPnNorte1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(jPnNorte1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxfIDVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLblIDVenta)))
+                    .addComponent(jBtnBuscarVenta)
+                    .addComponent(jBtnCrearVenta))
+                .addGap(11, 11, 11))
         );
+
+        jPnlVentas.add(jPnNorte1, java.awt.BorderLayout.PAGE_START);
+
+        jPnSur.setBackground(new java.awt.Color(54, 33, 88));
+        jPnSur.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPnSur.setPreferredSize(new java.awt.Dimension(450, 50));
+        jPnlVentas.add(jPnSur, java.awt.BorderLayout.PAGE_END);
+
+        jTbPaneVentas.addTab("Ventas", jPnlVentas);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 917, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 498, Short.MAX_VALUE)
+        );
+
+        jTbPaneVentas.addTab("tab2", jPanel2);
+
+        jPnlFondo.add(jTbPaneVentas, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPnlFondo, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnBuscarVenta;
+    private javax.swing.JButton jBtnCrearVenta;
+    private javax.swing.JLabel jLblIDVenta;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPnCentro1;
+    private javax.swing.JPanel jPnNorte1;
+    private javax.swing.JPanel jPnSur;
+    private javax.swing.JPanel jPnlFondo;
+    private javax.swing.JPanel jPnlVentas;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTbPaneVentas;
+    private javax.swing.JTable jTblListarVentas;
+    private javax.swing.JTextField jTxfIDVenta;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Metodo encargado de mostrar los datos en un jtable
+     */
+    private void mostrarTabla(JTable table, String columnas) {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        String[] nColumnas = columnas.split(",");
+        for (int i = 0; i < nColumnas.length; i++) {
+            modeloTabla.addColumn(nColumnas[i]);
+        }
+        cargarBotonessEnTabla(modeloTabla, table);
+    }
+
+    private void cargarBotonessEnTabla(DefaultTableModel modeloTabla, JTable table) {
+        table.setDefaultRenderer(Object.class, new RenderButton());
+        Venta venta;
+        JButton Detalle = new JButton("Detalle");
+        JButton Modificar = new JButton("Modificar");
+        JButton Eliminar = new JButton("Eliminar");
+        Object Datos[] = new Object[8];
+        for (int i = 0; i < 10; i++) {
+            Datos[0] = i;
+            Datos[1] = i;
+            Datos[2] = "2021-11-18";
+            Datos[3] = i;
+            Datos[4] = i;
+            Datos[5] = Detalle;
+            Datos[6] = Modificar;
+            Datos[7] = Eliminar;
+
+            modeloTabla.addRow(Datos);
+        }
+        table.setModel(modeloTabla);
+    }
+
 }

@@ -1011,13 +1011,13 @@ public class GUIProductos extends javax.swing.JInternalFrame {
 
         try {
             if (confirmacion < 1 && confirmacion > -1) {
-                boolean aux = service.eliminar(Integer.parseInt(id));
                 Producto aux2 = service.buscar(Integer.parseInt(id));
-                if (aux2 != null) {
-                    Messages.warningMessage("No se pudo borrar el producto", "Warning");
+                if (aux2 == null) {
+                    Messages.warningMessage("No se pudo borrar el producto id: " + id, "Warning");
                     EstadoListas = false;
                     return;
                 }
+                service.eliminar(Integer.parseInt(id));
                 EstadoListas = true;
             } else {
                 EstadoListas = false;
@@ -1298,7 +1298,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         Produccion produccion = new Produccion();
         String cantidad = jTxtFCantProProduccion.getText();
         if (dPkFechaProduccion.getDate() == null || cantidad.equals("")) {
-            Messages.warningMessage("Campos cantidad o fecha vacios:\n Error al modificar", "Warning");
+            Messages.warningMessage("Campos cantidad o fecha vacios:\n Error al crear producción", "Warning");
             return;
         }
         try {
@@ -1327,6 +1327,7 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         this.jTxfIDProduccion.setText(model.getValueAt(i, 0).toString());
         this.jTxtFCantProProduccion.setText(model.getValueAt(i, 3).toString());
         this.dPkFechaProduccion.setText(model.getValueAt(i, 1).toString());
+        this.jCbxProductos.setSelectedItem(model.getValueAt(i, 2));
     }//GEN-LAST:event_jTblProduccionMousePressed
 
     private void jTxfIDProduccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxfIDProduccionKeyTyped
@@ -1366,13 +1367,13 @@ public class GUIProductos extends javax.swing.JInternalFrame {
         ProduccionService service = new ProduccionService();
         try {
             if (confirmacion < 1 && confirmacion > -1) {
-                boolean aux = service.eliminar(Integer.parseInt(idProduccion));
                 Produccion aux2 = service.buscar(Integer.parseInt(idProduccion));
-                if (aux2 != null) {
-                    Messages.warningMessage("No se pudo borrar la produccion", "Warning");
+                if (aux2 == null) {
+                    Messages.warningMessage("No se pudo borrar la produccion con id: " + idProduccion, "Warning");
                     EstadoListas = false;
                     return;
                 }
+                service.eliminar(Integer.parseInt(idProduccion));
                 EstadoListas = true;
             } else {
                 EstadoListas = false;

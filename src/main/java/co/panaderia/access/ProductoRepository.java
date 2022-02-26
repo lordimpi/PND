@@ -164,7 +164,6 @@ public class ProductoRepository implements IProductoRepository {
 
             cstm.setInt(1, id);
             cstm.execute();
-
             this.disconnect();
             return true;
         } catch (SQLException ex) {
